@@ -1,6 +1,5 @@
 import { ContactData } from "@/lib/vcfGenerator";
 import { Phone, Mail, MapPin, Calendar, Globe, User, Building2, MessageCircle, Video, ChevronRight } from "lucide-react";
-import ContactMap from "./ContactMap";
 interface IOSContactPreviewProps {
   contact: ContactData;
 }
@@ -76,13 +75,6 @@ export const IOSContactPreview = ({
         </div>
         <ChevronRight className="w-5 h-5 text-white/60" />
       </div>
-
-      {/* Contact Map */}
-      {(hasHomeAddress || hasWorkAddress) && (
-        <div className="mb-6">
-          <ContactMap contact={contact} />
-        </div>
-      )}
 
       {/* Main contact details in unified box */}
       <div className="glass-unified-section">
