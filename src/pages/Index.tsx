@@ -186,16 +186,112 @@ const Index = () => {
       </header>
 
       {/* Main Content */}
-      <main className="container mx-auto px-4 pb-32">
+      <main className="container mx-auto px-4 pb-12">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 max-w-7xl mx-auto items-start">
           {/* Form Section */}
           <div className="space-y-6">
+            {/* Action Buttons - Top */}
+            <div className="glass-card p-6">
+              {!isEditMode ? (
+                <div className="grid grid-cols-2 gap-4">
+                  <Button
+                    onClick={handleEdit}
+                    className="text-base h-12 bg-white/10 hover:bg-white/15 text-white border border-white/20 backdrop-blur-xl transition-all duration-200 rounded-xl"
+                    size="lg"
+                  >
+                    <Edit className="w-5 h-5 mr-2" />
+                    Edit Contact
+                  </Button>
+                  <Button
+                    onClick={handleDownload}
+                    className="text-base h-12 bg-white/10 hover:bg-white/15 text-white border border-white/20 backdrop-blur-xl transition-all duration-200 rounded-xl"
+                    size="lg"
+                  >
+                    <Download className="w-5 h-5 mr-2" />
+                    Download VCF
+                  </Button>
+                </div>
+              ) : (
+                <div className="grid grid-cols-2 gap-4">
+                  <Button
+                    onClick={handleSave}
+                    disabled={isSaving}
+                    className="text-base h-12 bg-green-600/20 hover:bg-green-600/30 text-green-100 border border-green-500/30 backdrop-blur-xl transition-all duration-200 rounded-xl"
+                    size="lg"
+                  >
+                    {isSaving ? (
+                      <Loader2 className="w-5 h-5 mr-2 animate-spin" />
+                    ) : (
+                      <Save className="w-5 h-5 mr-2" />
+                    )}
+                    {isSaving ? "Saving..." : "Save VCF"}
+                  </Button>
+                  <Button
+                    onClick={handleDownload}
+                    className="text-base h-12 bg-white/10 hover:bg-white/15 text-white border border-white/20 backdrop-blur-xl transition-all duration-200 rounded-xl"
+                    size="lg"
+                  >
+                    <Download className="w-5 h-5 mr-2" />
+                    Download VCF
+                  </Button>
+                </div>
+              )}
+            </div>
+
             <ContactForm
               contact={contact}
               onContactChange={setContact}
               isReadOnly={!isEditMode}
               onHelpClick={() => setHelpOpen(true)}
             />
+
+            {/* Action Buttons - Bottom */}
+            <div className="glass-card p-6">
+              {!isEditMode ? (
+                <div className="grid grid-cols-2 gap-4">
+                  <Button
+                    onClick={handleEdit}
+                    className="text-base h-12 bg-white/10 hover:bg-white/15 text-white border border-white/20 backdrop-blur-xl transition-all duration-200 rounded-xl"
+                    size="lg"
+                  >
+                    <Edit className="w-5 h-5 mr-2" />
+                    Edit Contact
+                  </Button>
+                  <Button
+                    onClick={handleDownload}
+                    className="text-base h-12 bg-white/10 hover:bg-white/15 text-white border border-white/20 backdrop-blur-xl transition-all duration-200 rounded-xl"
+                    size="lg"
+                  >
+                    <Download className="w-5 h-5 mr-2" />
+                    Download VCF
+                  </Button>
+                </div>
+              ) : (
+                <div className="grid grid-cols-2 gap-4">
+                  <Button
+                    onClick={handleSave}
+                    disabled={isSaving}
+                    className="text-base h-12 bg-green-600/20 hover:bg-green-600/30 text-green-100 border border-green-500/30 backdrop-blur-xl transition-all duration-200 rounded-xl"
+                    size="lg"
+                  >
+                    {isSaving ? (
+                      <Loader2 className="w-5 h-5 mr-2 animate-spin" />
+                    ) : (
+                      <Save className="w-5 h-5 mr-2" />
+                    )}
+                    {isSaving ? "Saving..." : "Save VCF"}
+                  </Button>
+                  <Button
+                    onClick={handleDownload}
+                    className="text-base h-12 bg-white/10 hover:bg-white/15 text-white border border-white/20 backdrop-blur-xl transition-all duration-200 rounded-xl"
+                    size="lg"
+                  >
+                    <Download className="w-5 h-5 mr-2" />
+                    Download VCF
+                  </Button>
+                </div>
+              )}
+            </div>
           </div>
 
           {/* Preview Section */}
@@ -204,63 +300,6 @@ const Index = () => {
           </div>
         </div>
       </main>
-
-      {/* Floating Action Buttons */}
-      <div className="fixed bottom-6 left-0 right-0 z-50 animate-in slide-in-from-bottom-5 duration-300">
-          <div className="container mx-auto px-4">
-            <div className="max-w-7xl mx-auto">
-              <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-                <div className="glass-card p-4 backdrop-blur-xl border border-white/20 shadow-2xl">
-                  {!isEditMode ? (
-                    <div className="grid grid-cols-2 gap-4">
-                      <Button
-                        onClick={handleEdit}
-                        className="text-base h-12 bg-white/10 hover:bg-white/15 text-white border border-white/20 backdrop-blur-xl transition-all duration-200 rounded-xl"
-                        size="lg"
-                      >
-                        <Edit className="w-5 h-5 mr-2" />
-                        Edit Contact
-                      </Button>
-                      <Button
-                        onClick={handleDownload}
-                        className="text-base h-12 bg-white/10 hover:bg-white/15 text-white border border-white/20 backdrop-blur-xl transition-all duration-200 rounded-xl"
-                        size="lg"
-                      >
-                        <Download className="w-5 h-5 mr-2" />
-                        Download VCF
-                      </Button>
-                    </div>
-                  ) : (
-                    <div className="grid grid-cols-2 gap-4">
-                      <Button
-                        onClick={handleSave}
-                        disabled={isSaving}
-                        className="text-base h-12 bg-green-600/20 hover:bg-green-600/30 text-green-100 border border-green-500/30 backdrop-blur-xl transition-all duration-200 rounded-xl"
-                        size="lg"
-                      >
-                        {isSaving ? (
-                          <Loader2 className="w-5 h-5 mr-2 animate-spin" />
-                        ) : (
-                          <Save className="w-5 h-5 mr-2" />
-                        )}
-                        {isSaving ? "Saving..." : "Save VCF"}
-                      </Button>
-                      <Button
-                        onClick={handleDownload}
-                        className="text-base h-12 bg-white/10 hover:bg-white/15 text-white border border-white/20 backdrop-blur-xl transition-all duration-200 rounded-xl"
-                        size="lg"
-                      >
-                        <Download className="w-5 h-5 mr-2" />
-                        Download VCF
-                      </Button>
-                    </div>
-                  )}
-                </div>
-                <div className="hidden lg:block"></div>
-              </div>
-            </div>
-          </div>
-        </div>
 
       {/* Help Modal */}
       <HelpModal open={helpOpen} onOpenChange={setHelpOpen} />
