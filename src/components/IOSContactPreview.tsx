@@ -69,7 +69,7 @@ export const IOSContactPreview = ({ contact }: IOSContactPreviewProps) => {
       </div>
 
       {/* Contact Photo & Poster section */}
-      <div className="glass-section mb-1 flex items-center justify-between">
+      <div className="glass-section mb-4 flex items-center justify-between">
         <div className="flex items-center gap-3">
           <div className="w-10 h-10 glass-mini-avatar flex items-center justify-center">
             <span className="text-white text-sm font-medium">
@@ -81,120 +81,150 @@ export const IOSContactPreview = ({ contact }: IOSContactPreviewProps) => {
         <ChevronRight className="w-5 h-5 text-white/60" />
       </div>
 
-      {/* Contact details */}
-      <div className="space-y-1">
+      {/* Main contact details in unified box */}
+      <div className="glass-unified-section">
         {/* Phone Numbers */}
         {contact.cell_phone && (
-          <div className="glass-section">
-            <p className="text-white/70 text-sm font-medium">mobile</p>
-            <p className="text-white text-lg">{contact.cell_phone}</p>
-          </div>
+          <>
+            <div className="contact-row">
+              <p className="text-white/70 text-sm font-medium">mobile</p>
+              <p className="text-white text-lg">{contact.cell_phone}</p>
+            </div>
+            {(contact.work_phone || contact.home_phone || contact.email || contact.work_email || contact.work_url || contact.url || hasHomeAddress || hasWorkAddress || contact.birthday || contact.note) && <div className="contact-divider"></div>}
+          </>
         )}
 
         {contact.work_phone && (
-          <div className="glass-section">
-            <p className="text-white/70 text-sm font-medium">work</p>
-            <p className="text-white text-lg">{contact.work_phone}</p>
-          </div>
+          <>
+            <div className="contact-row">
+              <p className="text-white/70 text-sm font-medium">work</p>
+              <p className="text-white text-lg">{contact.work_phone}</p>
+            </div>
+            {(contact.home_phone || contact.email || contact.work_email || contact.work_url || contact.url || hasHomeAddress || hasWorkAddress || contact.birthday || contact.note) && <div className="contact-divider"></div>}
+          </>
         )}
 
         {contact.home_phone && (
-          <div className="glass-section">
-            <p className="text-white/70 text-sm font-medium">home</p>
-            <p className="text-white text-lg">{contact.home_phone}</p>
-          </div>
+          <>
+            <div className="contact-row">
+              <p className="text-white/70 text-sm font-medium">home</p>
+              <p className="text-white text-lg">{contact.home_phone}</p>
+            </div>
+            {(contact.email || contact.work_email || contact.work_url || contact.url || hasHomeAddress || hasWorkAddress || contact.birthday || contact.note) && <div className="contact-divider"></div>}
+          </>
         )}
 
         {/* Emails */}
         {contact.email && (
-          <div className="glass-section">
-            <p className="text-white/70 text-sm font-medium">home</p>
-            <p className="text-white text-lg break-all">{contact.email}</p>
-          </div>
+          <>
+            <div className="contact-row">
+              <p className="text-white/70 text-sm font-medium">home</p>
+              <p className="text-white text-lg break-all">{contact.email}</p>
+            </div>
+            {(contact.work_email || contact.work_url || contact.url || hasHomeAddress || hasWorkAddress || contact.birthday || contact.note) && <div className="contact-divider"></div>}
+          </>
         )}
 
         {contact.work_email && (
-          <div className="glass-section">
-            <p className="text-white/70 text-sm font-medium">work</p>
-            <p className="text-white text-lg break-all">{contact.work_email}</p>
-          </div>
+          <>
+            <div className="contact-row">
+              <p className="text-white/70 text-sm font-medium">work</p>
+              <p className="text-white text-lg break-all">{contact.work_email}</p>
+            </div>
+            {(contact.work_url || contact.url || hasHomeAddress || hasWorkAddress || contact.birthday || contact.note) && <div className="contact-divider"></div>}
+          </>
         )}
 
         {/* Work URL */}
         {contact.work_url && (
-          <div className="glass-section">
-            <p className="text-white/70 text-sm font-medium">work</p>
-            <p className="text-blue-400 text-lg break-all">http://{contact.work_url}</p>
-          </div>
+          <>
+            <div className="contact-row">
+              <p className="text-white/70 text-sm font-medium">work</p>
+              <p className="text-blue-400 text-lg break-all">http://{contact.work_url}</p>
+            </div>
+            {(contact.url || hasHomeAddress || hasWorkAddress || contact.birthday || contact.note) && <div className="contact-divider"></div>}
+          </>
         )}
 
         {/* Personal URL */}
         {contact.url && (
-          <div className="glass-section">
-            <p className="text-white/70 text-sm font-medium">website</p>
-            <p className="text-blue-400 text-lg break-all">{contact.url}</p>
-          </div>
+          <>
+            <div className="contact-row">
+              <p className="text-white/70 text-sm font-medium">website</p>
+              <p className="text-blue-400 text-lg break-all">{contact.url}</p>
+            </div>
+            {(hasHomeAddress || hasWorkAddress || contact.birthday || contact.note) && <div className="contact-divider"></div>}
+          </>
         )}
 
         {/* Home Address */}
         {hasHomeAddress && (
-          <div className="glass-section flex justify-between items-start">
-            <div className="flex-1">
-              <p className="text-white/70 text-sm font-medium">home</p>
-              <div className="text-white text-lg leading-relaxed">
-                {contact.home_address.street && <div>{contact.home_address.street}</div>}
-                <div>
-                  {[
-                    contact.home_address.postal_code,
-                    contact.home_address.city
-                  ].filter(Boolean).join(" ")}
+          <>
+            <div className="contact-row flex justify-between items-start">
+              <div className="flex-1">
+                <p className="text-white/70 text-sm font-medium">home</p>
+                <div className="text-white text-lg leading-relaxed">
+                  {contact.home_address.street && <div>{contact.home_address.street}</div>}
+                  <div>
+                    {[
+                      contact.home_address.postal_code,
+                      contact.home_address.city
+                    ].filter(Boolean).join(" ")}
+                  </div>
+                  {contact.home_address.country_region && <div>{contact.home_address.country_region}</div>}
                 </div>
-                {contact.home_address.country_region && <div>{contact.home_address.country_region}</div>}
+              </div>
+              <div className="w-12 h-12 glass-mini-avatar ml-4 flex items-center justify-center">
+                <MapPin className="w-6 h-6 text-red-400" />
               </div>
             </div>
-            <div className="w-12 h-12 glass-mini-avatar ml-4 flex items-center justify-center">
-              <MapPin className="w-6 h-6 text-red-400" />
-            </div>
-          </div>
+            {(hasWorkAddress || contact.birthday || contact.note) && <div className="contact-divider"></div>}
+          </>
         )}
 
         {/* Work Address */}
         {hasWorkAddress && (
-          <div className="glass-section flex justify-between items-start">
-            <div className="flex-1">
-              <p className="text-white/70 text-sm font-medium">work</p>
-              <div className="text-white text-lg leading-relaxed">
-                {contact.work_address.street && <div>{contact.work_address.street}</div>}
-                <div>
-                  {[
-                    contact.work_address.postal_code,
-                    contact.work_address.city
-                  ].filter(Boolean).join(" ")}
+          <>
+            <div className="contact-row flex justify-between items-start">
+              <div className="flex-1">
+                <p className="text-white/70 text-sm font-medium">work</p>
+                <div className="text-white text-lg leading-relaxed">
+                  {contact.work_address.street && <div>{contact.work_address.street}</div>}
+                  <div>
+                    {[
+                      contact.work_address.postal_code,
+                      contact.work_address.city
+                    ].filter(Boolean).join(" ")}
+                  </div>
+                  {contact.work_address.country_region && <div>{contact.work_address.country_region}</div>}
                 </div>
-                {contact.work_address.country_region && <div>{contact.work_address.country_region}</div>}
+              </div>
+              <div className="w-12 h-12 glass-mini-avatar ml-4 flex items-center justify-center">
+                <MapPin className="w-6 h-6 text-red-400" />
               </div>
             </div>
-            <div className="w-12 h-12 glass-mini-avatar ml-4 flex items-center justify-center">
-              <MapPin className="w-6 h-6 text-red-400" />
-            </div>
-          </div>
+            {(contact.birthday || contact.note) && <div className="contact-divider"></div>}
+          </>
         )}
 
         {/* Birthday */}
         {contact.birthday && (
-          <div className="glass-section">
-            <p className="text-white/70 text-sm font-medium">birthday</p>
-            <p className="text-white text-lg">{new Date(contact.birthday).toLocaleDateString('en-US', { 
-              day: 'numeric', 
-              month: 'long', 
-              year: 'numeric' 
-            })}</p>
-          </div>
+          <>
+            <div className="contact-row">
+              <p className="text-white/70 text-sm font-medium">birthday</p>
+              <p className="text-white text-lg">{new Date(contact.birthday).toLocaleDateString('en-US', { 
+                day: 'numeric', 
+                month: 'long', 
+                year: 'numeric' 
+              })}</p>
+            </div>
+            {contact.note && <div className="contact-divider"></div>}
+          </>
         )}
 
         {/* Notes */}
         {contact.note && (
-          <div className="glass-section">
+          <div className="contact-row">
             <p className="text-white/70 text-sm font-medium mb-2">Notes</p>
             <p className="text-white text-lg leading-relaxed">{contact.note}</p>
           </div>
@@ -202,14 +232,16 @@ export const IOSContactPreview = ({ contact }: IOSContactPreviewProps) => {
       </div>
 
       {/* Bottom action buttons */}
-      <div className="mt-8 space-y-1">
-        <div className="glass-section text-center">
+      <div className="glass-unified-section mt-4">
+        <div className="contact-row text-center">
           <p className="text-white text-lg font-medium">Send Message</p>
         </div>
-        <div className="glass-section text-center">
+        <div className="contact-divider"></div>
+        <div className="contact-row text-center">
           <p className="text-white text-lg font-medium">Share Contact</p>
         </div>
-        <div className="glass-section text-center">
+        <div className="contact-divider"></div>
+        <div className="contact-row text-center">
           <p className="text-white text-lg font-medium">Add to Favourites</p>
         </div>
       </div>

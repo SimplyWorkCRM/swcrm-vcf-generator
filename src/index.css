@@ -195,6 +195,23 @@ All colors MUST be HSL.
       0 2px 12px rgba(0, 0, 0, 0.15);
   }
   
+  .glass-unified-section {
+    @apply rounded-2xl backdrop-blur-xl border border-white/10;
+    background: rgba(0, 0, 0, 0.15), rgba(255, 255, 255, 0.15);
+    background-blend-mode: overlay;
+    box-shadow: 
+      inset 0 1px 0 rgba(255, 255, 255, 0.1),
+      0 2px 12px rgba(0, 0, 0, 0.15);
+  }
+  
+  .contact-row {
+    @apply p-4;
+  }
+  
+  .contact-divider {
+    @apply h-px bg-white/20 mx-4;
+  }
+  
   .ios-preview-container {
     @apply rounded-3xl p-8;
     background: linear-gradient(135deg, 
