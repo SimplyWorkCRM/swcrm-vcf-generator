@@ -19,8 +19,8 @@ export const IOSContactPreview = ({ contact }: IOSContactPreviewProps) => {
   
   // Get initials for avatar
   const getInitials = () => {
-    if (contact.first_name || contact.last_name) {
-      return `${contact.first_name?.[0] || ''}${contact.last_name?.[0] || ''}`.toUpperCase();
+    if (contact.first_name) {
+      return contact.first_name[0].toUpperCase();
     }
     return fullName?.[0]?.toUpperCase() || 'C';
   };
@@ -30,7 +30,7 @@ export const IOSContactPreview = ({ contact }: IOSContactPreviewProps) => {
       {/* Header with large profile photo */}
       <div className="text-center mb-8 pt-8">
         <div className="w-32 h-32 glass-avatar mx-auto mb-6 flex items-center justify-center">
-          <span className="text-white text-4xl font-light tracking-wider">
+          <span className="text-white text-5xl font-bold tracking-wider">
             {getInitials()}
           </span>
         </div>
@@ -72,7 +72,7 @@ export const IOSContactPreview = ({ contact }: IOSContactPreviewProps) => {
       <div className="glass-section mb-4 flex items-center justify-between">
         <div className="flex items-center gap-3">
           <div className="w-10 h-10 glass-mini-avatar flex items-center justify-center">
-            <span className="text-white text-sm font-medium">
+            <span className="text-white text-sm font-bold">
               {getInitials()}
             </span>
           </div>
