@@ -72,7 +72,7 @@ const Index = () => {
             <Smartphone className="w-5 h-5 text-white" />
           </div>
           <h1 className="text-3xl font-bold text-white">
-            VCF Generator
+            Contact Card Generator
           </h1>
         </div>
       </header>
@@ -86,7 +86,7 @@ const Index = () => {
             
             {/* Download Button */}
             <div className="glass-card p-6">
-              <Button onClick={handleDownload} className="ios-button w-full text-base h-12" size="lg">
+              <Button onClick={handleDownload} className="w-full text-base h-12 bg-white/10 hover:bg-white/15 text-white border border-white/20 backdrop-blur-xl transition-all duration-200 rounded-xl" size="lg">
                 <Download className="w-5 h-5 mr-2" />
                 Download VCF
               </Button>
