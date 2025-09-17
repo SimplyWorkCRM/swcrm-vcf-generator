@@ -56,6 +56,7 @@ const Index = () => {
   const [isEditMode, setIsEditMode] = useState(false);
   const [isSaving, setSaving] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  const [isNewUser, setIsNewUser] = useState(false);
 
   // Check if location_id is provided
   if (!locationId) {
@@ -79,6 +80,13 @@ const Index = () => {
         if (error instanceof VCardApiError) {
           if (error.error.code === 'ERROR_CODE_ACCESS_DENIED') {
             setError('unauthorized');
+            return;
+          }
+          if (error.error.code === 'ERROR_CODE_NOT_FOUND') {
+            // New user with no existing VCard - enable edit mode immediately
+            setIsNewUser(true);
+            setIsEditMode(true);
+            setError(null);
             return;
           }
         }
@@ -109,6 +117,7 @@ const Index = () => {
       setSaving(true);
       await vCardApi.saveVCard(contact);
       setIsEditMode(false);
+      setIsNewUser(false); // User is no longer new after first save
       toast({
         title: "Success!",
         description: "VCard has been saved successfully."
