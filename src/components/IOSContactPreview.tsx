@@ -159,8 +159,19 @@ export const IOSContactPreview = ({
                   {contact.home_address.country_region && <div>{contact.home_address.country_region}</div>}
                 </div>
               </div>
-              <div className="w-12 h-12 glass-mini-avatar ml-4 flex items-center justify-center">
-                <MapPin className="w-6 h-6 text-red-400" />
+              <div className="w-16 h-12 ml-4 relative rounded-lg overflow-hidden">
+                <div className="absolute inset-0 bg-gradient-to-br from-teal-600 to-teal-800">
+                  <div className="absolute inset-0 opacity-30">
+                    <svg className="w-full h-full" viewBox="0 0 60 40" fill="none">
+                      <path d="M10 20 L20 15 L35 25 L50 20" stroke="currentColor" strokeWidth="1" className="text-teal-300"/>
+                      <path d="M15 10 L25 25 L40 15 L55 30" stroke="currentColor" strokeWidth="1" className="text-teal-300"/>
+                      <path d="M5 30 L15 35 L30 25 L45 35" stroke="currentColor" strokeWidth="1" className="text-teal-300"/>
+                    </svg>
+                  </div>
+                  <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
+                    <div className="w-3 h-3 bg-red-500 rounded-full border-2 border-white shadow-md"></div>
+                  </div>
+                </div>
               </div>
             </div>
             {(hasWorkAddress || contact.birthday || contact.note) && <div className="contact-divider"></div>}
@@ -179,8 +190,19 @@ export const IOSContactPreview = ({
                   {contact.work_address.country_region && <div>{contact.work_address.country_region}</div>}
                 </div>
               </div>
-              <div className="w-12 h-12 glass-mini-avatar ml-4 flex items-center justify-center">
-                <MapPin className="w-6 h-6 text-red-400" />
+              <div className="w-16 h-12 ml-4 relative rounded-lg overflow-hidden">
+                <div className="absolute inset-0 bg-gradient-to-br from-teal-600 to-teal-800">
+                  <div className="absolute inset-0 opacity-30">
+                    <svg className="w-full h-full" viewBox="0 0 60 40" fill="none">
+                      <path d="M10 20 L20 15 L35 25 L50 20" stroke="currentColor" strokeWidth="1" className="text-teal-300"/>
+                      <path d="M15 10 L25 25 L40 15 L55 30" stroke="currentColor" strokeWidth="1" className="text-teal-300"/>
+                      <path d="M5 30 L15 35 L30 25 L45 35" stroke="currentColor" strokeWidth="1" className="text-teal-300"/>
+                    </svg>
+                  </div>
+                  <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
+                    <div className="w-3 h-3 bg-red-500 rounded-full border-2 border-white shadow-md"></div>
+                  </div>
+                </div>
               </div>
             </div>
             {(contact.birthday || contact.note) && <div className="contact-divider"></div>}
