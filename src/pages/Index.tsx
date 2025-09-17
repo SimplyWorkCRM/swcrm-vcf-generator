@@ -65,20 +65,21 @@ const Index = () => {
   return (
     <div className="min-h-screen bg-gradient-to-br from-background via-background/98 to-secondary/10">
       {/* Header */}
-      <header className="container mx-auto px-4 py-8">
-        <div className="text-center mb-8">
-          <div className="flex items-center justify-center gap-3 mb-4">
-            <div className="w-12 h-12 bg-gradient-to-br from-primary/90 to-primary rounded-2xl flex items-center justify-center shadow-md border border-primary/20">
-              <Smartphone className="w-6 h-6 text-primary-foreground" />
+      <header className="container mx-auto px-4 py-12">
+        <div className="text-center mb-12">
+          <div className="glass-card inline-block p-6 mb-6">
+            <div className="flex items-center justify-center gap-4 mb-3">
+              <div className="w-14 h-14 bg-gradient-to-br from-primary to-primary/80 rounded-2xl flex items-center justify-center shadow-lg">
+                <Smartphone className="w-7 h-7 text-primary-foreground" />
+              </div>
+              <h1 className="text-5xl font-bold bg-gradient-to-r from-primary to-primary/70 bg-clip-text text-transparent tracking-tight">
+                VCF Generator
+              </h1>
             </div>
-            <h1 className="text-4xl font-bold bg-gradient-to-r from-primary to-primary/80 bg-clip-text text-transparent">
-              VCF Generator
-            </h1>
+            <p className="text-muted-foreground/70 text-lg font-medium">
+              Create iOS-style contact cards instantly
+            </p>
           </div>
-          <p className="text-muted-foreground/80 text-lg max-w-2xl mx-auto">
-            Create beautiful contact cards with iOS 16 design. Generate VCF files instantly 
-            and see a live preview of how your contact will appear on mobile devices.
-          </p>
         </div>
       </header>
 
@@ -93,31 +94,29 @@ const Index = () => {
             <div className="glass-card p-6">
               <Button 
                 onClick={handleDownload}
-                className="ios-button w-full text-base"
+                className="ios-button w-full text-base h-12"
                 size="lg"
               >
                 <Download className="w-5 h-5 mr-2" />
-                Download VCF File
+                Download VCF
               </Button>
-              <p className="text-sm text-muted-foreground mt-3 text-center">
-                Compatible with iOS Contacts, Android, Outlook, and other contact apps
-              </p>
             </div>
           </div>
 
           {/* Preview Section */}
           <div className="lg:sticky lg:top-8 h-fit">
             <div className="glass-card p-6">
-              <div className="flex items-center gap-2 mb-6">
-                <Smartphone className="w-5 h-5 text-primary" />
-                <h2 className="text-xl font-semibold">iOS Contact Preview</h2>
+              <div className="glass-card bg-card/50 p-4 mb-6 rounded-xl">
+                <div className="flex items-center gap-3">
+                  <Smartphone className="w-5 h-5 text-primary" />
+                  <h2 className="text-xl font-semibold bg-gradient-to-r from-foreground to-foreground/70 bg-clip-text text-transparent">
+                    iOS Preview
+                  </h2>
+                </div>
               </div>
               <div className="ios-preview-container">
                 <IOSContactPreview contact={contact} />
               </div>
-              <p className="text-sm text-muted-foreground mt-4 text-center">
-                Live preview of how the contact will appear on iOS devices
-              </p>
             </div>
           </div>
         </div>

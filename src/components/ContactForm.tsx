@@ -24,7 +24,11 @@ export const ContactForm = ({ contact, onContactChange }: ContactFormProps) => {
   return (
     <div className="glass-card p-6 space-y-6">
       <div className="space-y-6">
-        <h2 className="text-xl font-semibold text-foreground/90 mb-2">Contact Information</h2>
+        <div className="glass-card bg-card/50 p-4 rounded-xl mb-6">
+          <h2 className="text-xl font-semibold bg-gradient-to-r from-foreground to-foreground/70 bg-clip-text text-transparent">
+            Contact Information
+          </h2>
+        </div>
         
         {/* Name Fields */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -84,8 +88,8 @@ export const ContactForm = ({ contact, onContactChange }: ContactFormProps) => {
         </div>
 
         {/* Contact Methods */}
-        <div className="space-y-4">
-          <h3 className="text-lg font-medium text-foreground/90 border-b border-border/50 pb-2">Contact Methods</h3>
+        <div className="glass-card bg-card/30 p-5 rounded-xl space-y-4">
+          <h3 className="text-lg font-medium text-foreground/90 mb-4">Contact Methods</h3>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             <div className="space-y-2">
               <Label htmlFor="email">Personal Email</Label>
@@ -136,8 +140,8 @@ export const ContactForm = ({ contact, onContactChange }: ContactFormProps) => {
         </div>
 
         {/* Home Address */}
-        <div className="space-y-4">
-          <h3 className="text-lg font-medium text-foreground/90 border-b border-border/50 pb-2">Home Address</h3>
+        <div className="glass-card bg-card/30 p-5 rounded-xl space-y-4">
+          <h3 className="text-lg font-medium text-foreground/90 mb-4">Home Address</h3>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             <div className="space-y-2">
               <Label htmlFor="home_street">Street</Label>
@@ -195,8 +199,8 @@ export const ContactForm = ({ contact, onContactChange }: ContactFormProps) => {
         </div>
 
         {/* Additional Info */}
-        <div className="space-y-4">
-          <h3 className="text-lg font-medium text-foreground/90 border-b border-border/50 pb-2">Additional Information</h3>
+        <div className="glass-card bg-card/30 p-5 rounded-xl space-y-4">
+          <h3 className="text-lg font-medium text-foreground/90 mb-4">Additional Information</h3>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             <div className="space-y-2">
               <Label htmlFor="url">Website</Label>
