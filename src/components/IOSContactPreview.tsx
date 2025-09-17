@@ -15,7 +15,7 @@ const gradientVariants = {
 export const IOSContactPreview = ({
   contact
 }: IOSContactPreviewProps) => {
-  const [selectedGradient, setSelectedGradient] = useState<keyof typeof gradientVariants>('vibrant');
+  const [selectedGradient, setSelectedGradient] = useState<keyof typeof gradientVariants>('dark');
   const fullName = [contact.name_prefix, contact.first_name, contact.middle_name, contact.last_name, contact.name_suffix].filter(Boolean).join(" ");
   const hasHomeAddress = contact.home_address.street || contact.home_address.city;
   const hasWorkAddress = contact.work_address.street || contact.work_address.city;
