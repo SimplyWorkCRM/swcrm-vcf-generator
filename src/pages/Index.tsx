@@ -167,7 +167,7 @@ const Index = () => {
     );
   }
 
-  return <div className="min-h-screen" style={{
+  return <div className="min-h-screen pb-8" style={{
     background: "linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 25%, #404040 50%, #1f1f1f 75%, #0a0a0a 100%)"
   }}>
       {/* Compact Header */}
@@ -186,7 +186,7 @@ const Index = () => {
       </header>
 
       {/* Main Content */}
-      <main className="container mx-auto px-4 pb-12">
+      <main className="container mx-auto px-4 pb-20">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 max-w-7xl mx-auto items-start">
           {/* Form Section */}
           <div className="space-y-6">
