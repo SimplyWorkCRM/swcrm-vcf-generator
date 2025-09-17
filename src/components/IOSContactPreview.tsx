@@ -28,14 +28,14 @@ export const IOSContactPreview = ({
     return fullName?.[0]?.toUpperCase() || 'C';
   };
   return <div 
-    className="rounded-3xl p-6 max-w-lg mx-auto"
+    className="rounded-3xl px-6 pb-6 max-w-lg mx-auto"
     style={{ 
       background: gradientVariants[selectedGradient],
       boxShadow: 'inset 0 1px 0 rgba(255, 255, 255, 0.1), 0 8px 32px rgba(0, 0, 0, 0.3)'
     }}
   >
       {/* Gradient selector */}
-      <div className="flex justify-center gap-3 mb-6 pt-2">
+      <div className="flex justify-center gap-3 mb-6 pt-8">
         {Object.entries(gradientVariants).map(([key, gradient]) => (
           <button
             key={key}
