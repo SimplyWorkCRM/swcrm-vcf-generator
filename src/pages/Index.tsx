@@ -10,27 +10,27 @@ const Index = () => {
     toast
   } = useToast();
   const [contact, setContact] = useState<ContactData>({
-    first_name: "Sead",
-    last_name: "Rastoder",
+    first_name: "John",
+    last_name: "Doe",
     middle_name: "",
     name_prefix: "",
     name_suffix: "",
     nickname: "",
-    email: "rastoder.sead@outlook.com",
-    work_email: "support@simplyworkcrm.com",
-    cell_phone: "+38461497050",
+    email: "john.doe@example.com",
+    work_email: "john.doe@company.com",
+    cell_phone: "+1 (555) 123-4567",
     work_phone: "",
     home_phone: "",
     pager_phone: "",
-    organization: "SWCRM",
+    organization: "Example Corp",
     title: "",
     role: "",
     home_address: {
-      street: "Velesici 39",
-      city: "Sarajevo",
-      state_province: "",
-      postal_code: "71000",
-      country_region: "BIH",
+      street: "123 Main Street",
+      city: "New York",
+      state_province: "NY",
+      postal_code: "10001",
+      country_region: "USA",
       label: ""
     },
     work_address: {
@@ -42,7 +42,7 @@ const Index = () => {
       label: ""
     },
     url: "",
-    work_url: "app.simplyworkcrm.com",
+    work_url: "company.example.com",
     birthday: "",
     note: ""
   });
