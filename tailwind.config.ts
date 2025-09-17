@@ -19,9 +19,15 @@ export default {
         ring: "hsl(var(--ring))",
         background: "hsl(var(--background))",
         foreground: "hsl(var(--foreground))",
+        "glass-card": "hsl(var(--glass-card))",
+        "glass-border": "hsl(var(--glass-border))",
+        "input-border": "hsl(var(--input-border))",
+        "shadow-glass": "var(--shadow-glass)",
+        "shadow-card": "var(--shadow-card)",
         primary: {
           DEFAULT: "hsl(var(--primary))",
           foreground: "hsl(var(--primary-foreground))",
+          glow: "hsl(var(--primary-glow))",
         },
         secondary: {
           DEFAULT: "hsl(var(--secondary))",
