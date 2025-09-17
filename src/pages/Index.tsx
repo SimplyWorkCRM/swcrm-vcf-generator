@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { useSearchParams, Navigate } from "react-router-dom";
 import { ContactData, downloadVCF } from "@/lib/vcfGenerator";
 import { vCardApi, VCardApiError } from "@/lib/vCardApi";
@@ -59,11 +59,33 @@ const Index = () => {
   const [isSaving, setSaving] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [isNewUser, setIsNewUser] = useState(false);
+  const [isButtonsSticky, setIsButtonsSticky] = useState(true);
+  const buttonsSectionRef = useRef<HTMLDivElement>(null);
 
   // Check if location_id is provided
   if (!locationId) {
     return <Unauthorized />;
   }
+
+  // Set up intersection observer for sticky buttons
+  useEffect(() => {
+    if (!buttonsSectionRef.current) return;
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        // When the static buttons section is not visible, show sticky buttons
+        setIsButtonsSticky(!entry.isIntersecting);
+      },
+      {
+        threshold: 0,
+        rootMargin: "0px"
+      }
+    );
+
+    observer.observe(buttonsSectionRef.current);
+
+    return () => observer.disconnect();
+  }, []);
 
   useEffect(() => {
     const fetchVCardData = async () => {
@@ -197,27 +219,27 @@ const Index = () => {
               onHelpClick={() => setHelpOpen(true)}
             />
             
-            {/* Action Buttons */}
-            <div className="glass-card p-6 space-y-4">
+            {/* Action Buttons - Static Position */}
+            <div ref={buttonsSectionRef} className="glass-card p-6">
               {!isEditMode ? (
-                <>
-                  <Button 
-                    onClick={handleEdit} 
-                    className="w-full text-base h-12 bg-white/10 hover:bg-white/15 text-white border border-white/20 backdrop-blur-xl transition-all duration-200 rounded-xl" 
+                <div className="grid grid-cols-2 gap-4">
+                  <Button
+                    onClick={handleEdit}
+                    className="text-base h-12 bg-white/10 hover:bg-white/15 text-white border border-white/20 backdrop-blur-xl transition-all duration-200 rounded-xl"
                     size="lg"
                   >
                     <Edit className="w-5 h-5 mr-2" />
                     Edit Contact
                   </Button>
-                  <Button 
-                    onClick={handleDownload} 
-                    className="w-full text-base h-12 bg-white/10 hover:bg-white/15 text-white border border-white/20 backdrop-blur-xl transition-all duration-200 rounded-xl" 
+                  <Button
+                    onClick={handleDownload}
+                    className="text-base h-12 bg-white/10 hover:bg-white/15 text-white border border-white/20 backdrop-blur-xl transition-all duration-200 rounded-xl"
                     size="lg"
                   >
                     <Download className="w-5 h-5 mr-2" />
                     Download VCF
                   </Button>
-                </>
+                </div>
               ) : (
                 <div className="grid grid-cols-2 gap-4">
                   <Button 
@@ -252,6 +274,58 @@ const Index = () => {
           </div>
         </div>
       </main>
+
+      {/* Floating Action Buttons */}
+      {isButtonsSticky && (
+        <div className="fixed bottom-6 left-1/2 transform -translate-x-1/2 z-50 w-full max-w-md px-4">
+          <div className="glass-card p-4 backdrop-blur-xl border border-white/20 shadow-xl">
+            {!isEditMode ? (
+              <div className="grid grid-cols-2 gap-4">
+                <Button
+                  onClick={handleEdit}
+                  className="text-base h-12 bg-white/10 hover:bg-white/15 text-white border border-white/20 backdrop-blur-xl transition-all duration-200 rounded-xl"
+                  size="lg"
+                >
+                  <Edit className="w-5 h-5 mr-2" />
+                  Edit Contact
+                </Button>
+                <Button
+                  onClick={handleDownload}
+                  className="text-base h-12 bg-white/10 hover:bg-white/15 text-white border border-white/20 backdrop-blur-xl transition-all duration-200 rounded-xl"
+                  size="lg"
+                >
+                  <Download className="w-5 h-5 mr-2" />
+                  Download VCF
+                </Button>
+              </div>
+            ) : (
+              <div className="grid grid-cols-2 gap-4">
+                <Button
+                  onClick={handleSave}
+                  disabled={isSaving}
+                  className="text-base h-12 bg-green-600/20 hover:bg-green-600/30 text-green-100 border border-green-500/30 backdrop-blur-xl transition-all duration-200 rounded-xl"
+                  size="lg"
+                >
+                  {isSaving ? (
+                    <Loader2 className="w-5 h-5 mr-2 animate-spin" />
+                  ) : (
+                    <Save className="w-5 h-5 mr-2" />
+                  )}
+                  {isSaving ? "Saving..." : "Save VCF"}
+                </Button>
+                <Button
+                  onClick={handleDownload}
+                  className="text-base h-12 bg-white/10 hover:bg-white/15 text-white border border-white/20 backdrop-blur-xl transition-all duration-200 rounded-xl"
+                  size="lg"
+                >
+                  <Download className="w-5 h-5 mr-2" />
+                  Download VCF
+                </Button>
+              </div>
+            )}
+          </div>
+        </div>
+      )}
 
       {/* Help Modal */}
       <HelpModal open={helpOpen} onOpenChange={setHelpOpen} />
