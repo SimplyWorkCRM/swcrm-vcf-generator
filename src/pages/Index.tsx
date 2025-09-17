@@ -100,12 +100,7 @@ const Index = () => {
           {/* Preview Section */}
           <div className="lg:sticky lg:top-8 h-fit">
             <div className="glass-card p-6">
-              <div className="glass-card bg-card/50 p-4 mb-6 rounded-xl">
-                <div className="flex items-center gap-3">
-                  <Smartphone className="w-5 h-5 text-primary" />
-                  
-                </div>
-              </div>
+              
               <div className="ios-preview-container">
                 <IOSContactPreview contact={contact} />
               </div>
