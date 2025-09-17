@@ -54,6 +54,29 @@ export const ContactForm = ({ contact, onContactChange }: ContactFormProps) => {
           </div>
         </div>
 
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div className="space-y-2">
+            <Label htmlFor="name_prefix">Prefix</Label>
+            <Input
+              id="name_prefix"
+              className="form-input"
+              value={contact.name_prefix}
+              onChange={(e) => updateContact('name_prefix', e.target.value)}
+              placeholder="Mr."
+            />
+          </div>
+          <div className="space-y-2">
+            <Label htmlFor="name_suffix">Suffix</Label>
+            <Input
+              id="name_suffix"
+              className="form-input"
+              value={contact.name_suffix}
+              onChange={(e) => updateContact('name_suffix', e.target.value)}
+              placeholder="Jr."
+            />
+          </div>
+        </div>
+
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
           <div className="space-y-2">
             <Label htmlFor="middle_name">Middle Name</Label>
@@ -83,6 +106,29 @@ export const ContactForm = ({ contact, onContactChange }: ContactFormProps) => {
               value={contact.organization}
               onChange={(e) => updateContact('organization', e.target.value)}
               placeholder="Company Inc."
+            />
+          </div>
+        </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div className="space-y-2">
+            <Label htmlFor="title">Title</Label>
+            <Input
+              id="title"
+              className="form-input"
+              value={contact.title}
+              onChange={(e) => updateContact('title', e.target.value)}
+              placeholder="Software Engineer"
+            />
+          </div>
+          <div className="space-y-2">
+            <Label htmlFor="role">Role</Label>
+            <Input
+              id="role"
+              className="form-input"
+              value={contact.role}
+              onChange={(e) => updateContact('role', e.target.value)}
+              placeholder="Senior Developer"
             />
           </div>
         </div>
@@ -134,6 +180,42 @@ export const ContactForm = ({ contact, onContactChange }: ContactFormProps) => {
                 value={contact.work_phone}
                 onChange={(e) => updateContact('work_phone', e.target.value)}
                 placeholder="+1 (555) 987-6543"
+              />
+            </div>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div className="space-y-2">
+              <Label htmlFor="home_phone">Home Phone</Label>
+              <Input
+                id="home_phone"
+                className="form-input"
+                value={contact.home_phone}
+                onChange={(e) => updateContact('home_phone', e.target.value)}
+                placeholder="+1 (555) 123-4567"
+              />
+            </div>
+            <div className="space-y-2">
+              <Label htmlFor="pager_phone">Pager Phone</Label>
+              <Input
+                id="pager_phone"
+                className="form-input"
+                value={contact.pager_phone}
+                onChange={(e) => updateContact('pager_phone', e.target.value)}
+                placeholder="+1 (555) 555-5555"
+              />
+            </div>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-1 gap-4">
+            <div className="space-y-2">
+              <Label htmlFor="work_url">Work Website</Label>
+              <Input
+                id="work_url"
+                className="form-input"
+                value={contact.work_url}
+                onChange={(e) => updateContact('work_url', e.target.value)}
+                placeholder="company.com"
               />
             </div>
           </div>
@@ -198,12 +280,71 @@ export const ContactForm = ({ contact, onContactChange }: ContactFormProps) => {
           </div>
         </div>
 
+        {/* Work Address */}
+        <div className="glass-card bg-card/30 p-5 rounded-xl space-y-4">
+          <h3 className="text-lg font-medium text-foreground/90 mb-4">Work Address</h3>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div className="space-y-2">
+              <Label htmlFor="work_street">Street</Label>
+              <Input
+                id="work_street"
+                className="form-input"
+                value={contact.work_address.street}
+                onChange={(e) => updateAddress('work_address', 'street', e.target.value)}
+                placeholder="456 Business Ave"
+              />
+            </div>
+            <div className="space-y-2">
+              <Label htmlFor="work_city">City</Label>
+              <Input
+                id="work_city"
+                className="form-input"
+                value={contact.work_address.city}
+                onChange={(e) => updateAddress('work_address', 'city', e.target.value)}
+                placeholder="San Francisco"
+              />
+            </div>
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+            <div className="space-y-2">
+              <Label htmlFor="work_state">State/Province</Label>
+              <Input
+                id="work_state"
+                className="form-input"
+                value={contact.work_address.state_province}
+                onChange={(e) => updateAddress('work_address', 'state_province', e.target.value)}
+                placeholder="CA"
+              />
+            </div>
+            <div className="space-y-2">
+              <Label htmlFor="work_postal">Postal Code</Label>
+              <Input
+                id="work_postal"
+                className="form-input"
+                value={contact.work_address.postal_code}
+                onChange={(e) => updateAddress('work_address', 'postal_code', e.target.value)}
+                placeholder="94107"
+              />
+            </div>
+            <div className="space-y-2">
+              <Label htmlFor="work_country">Country</Label>
+              <Input
+                id="work_country"
+                className="form-input"
+                value={contact.work_address.country_region}
+                onChange={(e) => updateAddress('work_address', 'country_region', e.target.value)}
+                placeholder="USA"
+              />
+            </div>
+          </div>
+        </div>
+
         {/* Additional Info */}
         <div className="glass-card bg-card/30 p-5 rounded-xl space-y-4">
           <h3 className="text-lg font-medium text-foreground/90 mb-4">Additional Information</h3>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             <div className="space-y-2">
-              <Label htmlFor="url">Website</Label>
+              <Label htmlFor="url">Personal Website</Label>
               <Input
                 id="url"
                 className="form-input"

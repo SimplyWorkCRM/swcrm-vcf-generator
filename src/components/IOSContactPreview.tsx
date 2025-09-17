@@ -30,6 +30,14 @@ export const IOSContactPreview = ({
         {contact.organization && <p className="text-white/70 text-sm font-medium mb-2 tracking-wide">
             {contact.organization}
           </p>}
+
+        {/* Title and Role - if available */}
+        {contact.title && <p className="text-white/60 text-sm mb-1">
+            {contact.title}
+          </p>}
+        {contact.role && <p className="text-white/60 text-xs mb-2">
+            {contact.role}
+          </p>}
         
         {/* Large contact name */}
         <h1 className="text-white text-3xl font-bold mb-1 tracking-tight">
@@ -84,13 +92,21 @@ export const IOSContactPreview = ({
               <p className="text-white/70 text-sm font-medium">work</p>
               <p className="text-white text-lg">{contact.work_phone}</p>
             </div>
-            {(contact.home_phone || contact.email || contact.work_email || contact.work_url || contact.url || hasHomeAddress || hasWorkAddress || contact.birthday || contact.note) && <div className="contact-divider"></div>}
+            {(contact.home_phone || contact.pager_phone || contact.email || contact.work_email || contact.work_url || contact.url || hasHomeAddress || hasWorkAddress || contact.birthday || contact.note) && <div className="contact-divider"></div>}
           </>}
 
         {contact.home_phone && <>
             <div className="contact-row">
               <p className="text-white/70 text-sm font-medium">home</p>
               <p className="text-white text-lg">{contact.home_phone}</p>
+            </div>
+            {(contact.pager_phone || contact.email || contact.work_email || contact.work_url || contact.url || hasHomeAddress || hasWorkAddress || contact.birthday || contact.note) && <div className="contact-divider"></div>}
+          </>}
+
+        {contact.pager_phone && <>
+            <div className="contact-row">
+              <p className="text-white/70 text-sm font-medium">pager</p>
+              <p className="text-white text-lg">{contact.pager_phone}</p>
             </div>
             {(contact.email || contact.work_email || contact.work_url || contact.url || hasHomeAddress || hasWorkAddress || contact.birthday || contact.note) && <div className="contact-divider"></div>}
           </>}

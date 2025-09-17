@@ -62,22 +62,15 @@ const Index = () => {
     }
   };
   return <div className="min-h-screen bg-gradient-to-br from-background via-background/98 to-secondary/10">
-      {/* Header */}
-      <header className="container mx-auto px-4 py-12">
-        <div className="text-center mb-12">
-          <div className="glass-card inline-block p-6 mb-6">
-            <div className="flex items-center justify-center gap-4 mb-3">
-              <div className="w-14 h-14 bg-gradient-to-br from-primary to-primary/80 rounded-2xl flex items-center justify-center shadow-lg">
-                <Smartphone className="w-7 h-7 text-primary-foreground" />
-              </div>
-              <h1 className="text-5xl font-bold bg-gradient-to-r from-primary to-primary/70 bg-clip-text text-transparent tracking-tight">
-                VCF Generator
-              </h1>
-            </div>
-            <p className="text-muted-foreground/70 text-lg font-medium">
-              Create iOS-style contact cards instantly
-            </p>
+      {/* Compact Header */}
+      <header className="container mx-auto px-4 py-4">
+        <div className="flex items-center gap-3 mb-6">
+          <div className="w-8 h-8 bg-gradient-to-br from-primary to-primary/80 rounded-lg flex items-center justify-center">
+            <Smartphone className="w-4 h-4 text-primary-foreground" />
           </div>
+          <h1 className="text-2xl font-bold bg-gradient-to-r from-primary to-primary/70 bg-clip-text text-transparent">
+            VCF Generator
+          </h1>
         </div>
       </header>
 
@@ -98,14 +91,8 @@ const Index = () => {
           </div>
 
           {/* Preview Section */}
-          <div className="lg:sticky lg:top-8 h-fit">
+          <div className="lg:sticky lg:top-4 h-fit">
             <div className="glass-card p-6">
-              <div className="glass-card bg-card/50 p-4 mb-6 rounded-xl">
-                <div className="flex items-center gap-3">
-                  <Smartphone className="w-5 h-5 text-primary" />
-                  
-                </div>
-              </div>
               <div className="ios-preview-container">
                 <IOSContactPreview contact={contact} />
               </div>
