@@ -112,7 +112,7 @@ const Index = () => {
                 <Smartphone className="w-5 h-5 text-primary" />
                 <h2 className="text-xl font-semibold">iOS Contact Preview</h2>
               </div>
-              <div className="bg-gradient-to-b from-secondary/30 to-secondary/10 rounded-3xl p-8">
+              <div className="ios-preview-container">
                 <IOSContactPreview contact={contact} />
               </div>
               <p className="text-sm text-muted-foreground mt-4 text-center">
