@@ -26,7 +26,7 @@ export const IOSContactPreview = ({ contact }: IOSContactPreviewProps) => {
   };
 
   return (
-    <div className="ios-contact-preview max-w-sm mx-auto">
+    <div className="ios-contact-preview max-w-lg mx-auto">
       {/* Header with large profile photo */}
       <div className="text-center mb-8 pt-8">
         <div className="w-32 h-32 glass-avatar mx-auto mb-6 flex items-center justify-center">
