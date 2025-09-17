@@ -234,15 +234,15 @@ export const IOSContactPreview = ({ contact }: IOSContactPreviewProps) => {
       {/* Bottom action buttons */}
       <div className="glass-unified-section mt-4">
         <div className="contact-row text-left">
-          <p className="text-white text-lg font-medium">Send Message</p>
+          <p className="text-white text-lg">Send Message</p>
         </div>
         <div className="contact-divider"></div>
         <div className="contact-row text-left">
-          <p className="text-white text-lg font-medium">Share Contact</p>
+          <p className="text-white text-lg">Share Contact</p>
         </div>
         <div className="contact-divider"></div>
         <div className="contact-row text-left">
-          <p className="text-white text-lg font-medium">Add to Favourites</p>
+          <p className="text-white text-lg">Add to Favourites</p>
         </div>
       </div>
     </div>
