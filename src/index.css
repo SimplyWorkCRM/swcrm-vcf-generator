@@ -238,6 +238,18 @@ All colors MUST be HSL.
     outline: none;
   }
   
+  .form-input:read-only {
+    @apply cursor-default;
+    background: rgba(255, 255, 255, 0.03);
+    border-color: rgba(255, 255, 255, 0.05);
+    color: hsl(var(--foreground) / 0.8);
+  }
+  
+  .form-input:read-only:focus {
+    box-shadow: none;
+    border-color: rgba(255, 255, 255, 0.05);
+  }
+  
   .form-label {
     @apply text-foreground/90 font-medium text-sm;
   }

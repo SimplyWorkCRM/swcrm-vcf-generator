@@ -7,9 +7,10 @@ import { Textarea } from "@/components/ui/textarea";
 interface ContactFormProps {
   contact: ContactData;
   onContactChange: (contact: ContactData) => void;
+  isReadOnly?: boolean;
 }
 
-export const ContactForm = ({ contact, onContactChange }: ContactFormProps) => {
+export const ContactForm = ({ contact, onContactChange, isReadOnly = false }: ContactFormProps) => {
   const updateContact = (field: string, value: string) => {
     onContactChange({ ...contact, [field]: value });
   };
@@ -40,6 +41,7 @@ export const ContactForm = ({ contact, onContactChange }: ContactFormProps) => {
               value={contact.first_name}
               onChange={(e) => updateContact('first_name', e.target.value)}
               placeholder="John"
+              readOnly={isReadOnly}
             />
           </div>
           <div className="space-y-2">
@@ -50,6 +52,7 @@ export const ContactForm = ({ contact, onContactChange }: ContactFormProps) => {
               value={contact.last_name}
               onChange={(e) => updateContact('last_name', e.target.value)}
               placeholder="Doe"
+              readOnly={isReadOnly}
             />
           </div>
         </div>
@@ -63,6 +66,7 @@ export const ContactForm = ({ contact, onContactChange }: ContactFormProps) => {
               value={contact.name_prefix}
               onChange={(e) => updateContact('name_prefix', e.target.value)}
               placeholder="Mr."
+              readOnly={isReadOnly}
             />
           </div>
           <div className="space-y-2">
@@ -73,6 +77,7 @@ export const ContactForm = ({ contact, onContactChange }: ContactFormProps) => {
               value={contact.name_suffix}
               onChange={(e) => updateContact('name_suffix', e.target.value)}
               placeholder="Jr."
+              readOnly={isReadOnly}
             />
           </div>
         </div>
@@ -86,6 +91,7 @@ export const ContactForm = ({ contact, onContactChange }: ContactFormProps) => {
               value={contact.middle_name}
               onChange={(e) => updateContact('middle_name', e.target.value)}
               placeholder="Michael"
+              readOnly={isReadOnly}
             />
           </div>
           <div className="space-y-2">
@@ -96,6 +102,7 @@ export const ContactForm = ({ contact, onContactChange }: ContactFormProps) => {
               value={contact.nickname}
               onChange={(e) => updateContact('nickname', e.target.value)}
               placeholder="Johnny"
+              readOnly={isReadOnly}
             />
           </div>
         </div>
@@ -108,6 +115,7 @@ export const ContactForm = ({ contact, onContactChange }: ContactFormProps) => {
             value={contact.organization}
             onChange={(e) => updateContact('organization', e.target.value)}
             placeholder="Company Name"
+            readOnly={isReadOnly}
           />
         </div>
         
@@ -120,6 +128,7 @@ export const ContactForm = ({ contact, onContactChange }: ContactFormProps) => {
               value={contact.title}
               onChange={(e) => updateContact('title', e.target.value)}
               placeholder="Software Engineer"
+              readOnly={isReadOnly}
             />
           </div>
           <div className="space-y-2">
@@ -130,6 +139,7 @@ export const ContactForm = ({ contact, onContactChange }: ContactFormProps) => {
               value={contact.role}
               onChange={(e) => updateContact('role', e.target.value)}
               placeholder="Senior Developer"
+              readOnly={isReadOnly}
             />
           </div>
         </div>
@@ -150,6 +160,7 @@ export const ContactForm = ({ contact, onContactChange }: ContactFormProps) => {
                 value={contact.email}
                 onChange={(e) => updateContact('email', e.target.value)}
                 placeholder="john@example.com"
+                readOnly={isReadOnly}
               />
             </div>
             <div className="space-y-2">
@@ -161,6 +172,7 @@ export const ContactForm = ({ contact, onContactChange }: ContactFormProps) => {
                 value={contact.work_email}
                 onChange={(e) => updateContact('work_email', e.target.value)}
                 placeholder="john@company.com"
+                readOnly={isReadOnly}
               />
             </div>
           </div>
@@ -175,6 +187,7 @@ export const ContactForm = ({ contact, onContactChange }: ContactFormProps) => {
                 value={contact.cell_phone}
                 onChange={(e) => updateContact('cell_phone', e.target.value)}
                 placeholder="+1 (555) 123-4567"
+                readOnly={isReadOnly}
               />
             </div>
             <div className="space-y-2">
@@ -186,6 +199,7 @@ export const ContactForm = ({ contact, onContactChange }: ContactFormProps) => {
                 value={contact.work_phone}
                 onChange={(e) => updateContact('work_phone', e.target.value)}
                 placeholder="+1 (555) 987-6543"
+                readOnly={isReadOnly}
               />
             </div>
           </div>
@@ -201,6 +215,7 @@ export const ContactForm = ({ contact, onContactChange }: ContactFormProps) => {
               value={contact.home_phone}
               onChange={(e) => updateContact('home_phone', e.target.value)}
               placeholder="+1 (555) 111-2222"
+              readOnly={isReadOnly}
             />
           </div>
           <div className="space-y-2">
@@ -212,6 +227,7 @@ export const ContactForm = ({ contact, onContactChange }: ContactFormProps) => {
               value={contact.pager_phone}
               onChange={(e) => updateContact('pager_phone', e.target.value)}
               placeholder="+1 (555) 333-4444"
+              readOnly={isReadOnly}
             />
           </div>
         </div>
@@ -226,6 +242,7 @@ export const ContactForm = ({ contact, onContactChange }: ContactFormProps) => {
               value={contact.work_url}
               onChange={(e) => updateContact('work_url', e.target.value)}
               placeholder="company.com"
+              readOnly={isReadOnly}
             />
           </div>
           <div className="space-y-2">
@@ -237,6 +254,7 @@ export const ContactForm = ({ contact, onContactChange }: ContactFormProps) => {
               value={contact.url}
               onChange={(e) => updateContact('url', e.target.value)}
               placeholder="https://johndoe.com"
+              readOnly={isReadOnly}
             />
           </div>
         </div>
@@ -256,6 +274,7 @@ export const ContactForm = ({ contact, onContactChange }: ContactFormProps) => {
                 value={contact.home_address.street}
                 onChange={(e) => updateAddress('home_address', 'street', e.target.value)}
                 placeholder="123 Main Street"
+                readOnly={isReadOnly}
               />
             </div>
             <div className="space-y-2">
@@ -266,6 +285,7 @@ export const ContactForm = ({ contact, onContactChange }: ContactFormProps) => {
                 value={contact.home_address.city}
                 onChange={(e) => updateAddress('home_address', 'city', e.target.value)}
                 placeholder="New York"
+                readOnly={isReadOnly}
               />
             </div>
           </div>
@@ -278,6 +298,7 @@ export const ContactForm = ({ contact, onContactChange }: ContactFormProps) => {
                 value={contact.home_address.state_province}
                 onChange={(e) => updateAddress('home_address', 'state_province', e.target.value)}
                 placeholder="NY"
+                readOnly={isReadOnly}
               />
             </div>
             <div className="space-y-2">
@@ -288,6 +309,7 @@ export const ContactForm = ({ contact, onContactChange }: ContactFormProps) => {
                 value={contact.home_address.postal_code}
                 onChange={(e) => updateAddress('home_address', 'postal_code', e.target.value)}
                 placeholder="10001"
+                readOnly={isReadOnly}
               />
             </div>
             <div className="space-y-2">
@@ -298,6 +320,7 @@ export const ContactForm = ({ contact, onContactChange }: ContactFormProps) => {
                 value={contact.home_address.country_region}
                 onChange={(e) => updateAddress('home_address', 'country_region', e.target.value)}
                 placeholder="USA"
+                readOnly={isReadOnly}
               />
             </div>
           </div>
@@ -318,6 +341,7 @@ export const ContactForm = ({ contact, onContactChange }: ContactFormProps) => {
                 value={contact.work_address.street}
                 onChange={(e) => updateAddress('work_address', 'street', e.target.value)}
                 placeholder="456 Business Ave"
+                readOnly={isReadOnly}
               />
             </div>
             <div className="space-y-2">
@@ -328,6 +352,7 @@ export const ContactForm = ({ contact, onContactChange }: ContactFormProps) => {
                 value={contact.work_address.city}
                 onChange={(e) => updateAddress('work_address', 'city', e.target.value)}
                 placeholder="San Francisco"
+                readOnly={isReadOnly}
               />
             </div>
           </div>
@@ -340,6 +365,7 @@ export const ContactForm = ({ contact, onContactChange }: ContactFormProps) => {
                 value={contact.work_address.state_province}
                 onChange={(e) => updateAddress('work_address', 'state_province', e.target.value)}
                 placeholder="CA"
+                readOnly={isReadOnly}
               />
             </div>
             <div className="space-y-2">
@@ -350,6 +376,7 @@ export const ContactForm = ({ contact, onContactChange }: ContactFormProps) => {
                 value={contact.work_address.postal_code}
                 onChange={(e) => updateAddress('work_address', 'postal_code', e.target.value)}
                 placeholder="94105"
+                readOnly={isReadOnly}
               />
             </div>
             <div className="space-y-2">
@@ -360,6 +387,7 @@ export const ContactForm = ({ contact, onContactChange }: ContactFormProps) => {
                 value={contact.work_address.country_region}
                 onChange={(e) => updateAddress('work_address', 'country_region', e.target.value)}
                 placeholder="USA"
+                readOnly={isReadOnly}
               />
             </div>
           </div>
@@ -379,6 +407,7 @@ export const ContactForm = ({ contact, onContactChange }: ContactFormProps) => {
               className="form-input"
               value={contact.birthday}
               onChange={(e) => updateContact('birthday', e.target.value)}
+              readOnly={isReadOnly}
             />
           </div>
           
@@ -390,6 +419,7 @@ export const ContactForm = ({ contact, onContactChange }: ContactFormProps) => {
               value={contact.note}
               onChange={(e) => updateContact('note', e.target.value)}
               placeholder="Additional notes about this contact..."
+              readOnly={isReadOnly}
             />
           </div>
         </div>

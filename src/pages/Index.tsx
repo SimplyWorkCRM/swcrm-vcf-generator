@@ -1,36 +1,41 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { useSearchParams, Navigate } from "react-router-dom";
 import { ContactData, downloadVCF } from "@/lib/vcfGenerator";
+import { vCardApi, VCardApiError } from "@/lib/vCardApi";
 import { ContactForm } from "@/components/ContactForm";
 import { IOSContactPreview } from "@/components/IOSContactPreview";
 import { Button } from "@/components/ui/button";
-import { Download, Smartphone } from "lucide-react";
+import { Download, Smartphone, Edit, Save, Loader2 } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
+import Unauthorized from "./Unauthorized";
 const Index = () => {
-  const {
-    toast
-  } = useToast();
+  const { toast } = useToast();
+  const [searchParams] = useSearchParams();
+  const locationId = searchParams.get("location_id");
+  
   const [contact, setContact] = useState<ContactData>({
-    first_name: "John",
-    last_name: "Doe",
+    location_id: locationId || "",
+    first_name: "",
+    last_name: "",
     middle_name: "",
     name_prefix: "",
     name_suffix: "",
     nickname: "",
-    email: "john.doe@example.com",
-    work_email: "john.doe@company.com",
-    cell_phone: "+1 (555) 123-4567",
+    email: "",
+    work_email: "",
+    cell_phone: "",
     work_phone: "",
     home_phone: "",
     pager_phone: "",
-    organization: "Example Corp",
+    organization: "",
     title: "",
     role: "",
     home_address: {
-      street: "123 Main Street",
-      city: "New York",
-      state_province: "NY",
-      postal_code: "10001",
-      country_region: "USA",
+      street: "",
+      city: "",
+      state_province: "",
+      postal_code: "",
+      country_region: "",
       label: ""
     },
     work_address: {
@@ -42,10 +47,83 @@ const Index = () => {
       label: ""
     },
     url: "",
-    work_url: "company.example.com",
+    work_url: "",
     birthday: "",
     note: ""
   });
+  
+  const [isLoading, setIsLoading] = useState(true);
+  const [isEditMode, setIsEditMode] = useState(false);
+  const [isSaving, setSaving] = useState(false);
+  const [error, setError] = useState<string | null>(null);
+
+  // Check if location_id is provided
+  if (!locationId) {
+    return <Unauthorized />;
+  }
+
+  useEffect(() => {
+    const fetchVCardData = async () => {
+      try {
+        setIsLoading(true);
+        const response = await vCardApi.getVCard(locationId);
+        
+        if (response.vcf_json) {
+          setContact({
+            ...response.vcf_json,
+            location_id: locationId
+          });
+        }
+        setError(null);
+      } catch (error) {
+        if (error instanceof VCardApiError) {
+          if (error.error.code === 'ERROR_CODE_ACCESS_DENIED') {
+            setError('unauthorized');
+            return;
+          }
+        }
+        toast({
+          title: "Error",
+          description: "Failed to load VCard data. Please try again.",
+          variant: "destructive"
+        });
+        setError('loading_failed');
+      } finally {
+        setIsLoading(false);
+      }
+    };
+
+    fetchVCardData();
+  }, [locationId, toast]);
+
+  // Show unauthorized page if access denied
+  if (error === 'unauthorized') {
+    return <Unauthorized />;
+  }
+  const handleEdit = () => {
+    setIsEditMode(true);
+  };
+
+  const handleSave = async () => {
+    try {
+      setSaving(true);
+      await vCardApi.saveVCard(contact);
+      setIsEditMode(false);
+      toast({
+        title: "Success!",
+        description: "VCard has been saved successfully."
+      });
+    } catch (error) {
+      toast({
+        title: "Error",
+        description: "Failed to save VCard. Please try again.",
+        variant: "destructive"
+      });
+    } finally {
+      setSaving(false);
+    }
+  };
+
   const handleDownload = () => {
     try {
       downloadVCF(contact);
@@ -61,6 +139,23 @@ const Index = () => {
       });
     }
   };
+  // Show loading state
+  if (isLoading) {
+    return (
+      <div className="min-h-screen flex items-center justify-center" style={{
+        background: "linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 25%, #404040 50%, #1f1f1f 75%, #0a0a0a 100%)"
+      }}>
+        <div className="text-center p-8">
+          <div className="glass-card p-8 max-w-md mx-auto">
+            <Loader2 className="w-8 h-8 animate-spin text-white mx-auto mb-4" />
+            <h2 className="text-xl font-semibold text-white mb-2">Loading VCard</h2>
+            <p className="text-white/80">Please wait while we fetch your contact information...</p>
+          </div>
+        </div>
+      </div>
+    );
+  }
+
   return <div className="min-h-screen" style={{
     background: "linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 25%, #404040 50%, #1f1f1f 75%, #0a0a0a 100%)"
   }}>
@@ -84,14 +179,58 @@ const Index = () => {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 max-w-7xl mx-auto items-start">
           {/* Form Section */}
           <div className="space-y-6">
-            <ContactForm contact={contact} onContactChange={setContact} />
+            <ContactForm 
+              contact={contact} 
+              onContactChange={setContact} 
+              isReadOnly={!isEditMode}
+            />
             
-            {/* Download Button */}
-            <div className="glass-card p-6">
-              <Button onClick={handleDownload} className="w-full text-base h-12 bg-white/10 hover:bg-white/15 text-white border border-white/20 backdrop-blur-xl transition-all duration-200 rounded-xl" size="lg">
-                <Download className="w-5 h-5 mr-2" />
-                Download VCF
-              </Button>
+            {/* Action Buttons */}
+            <div className="glass-card p-6 space-y-4">
+              {!isEditMode ? (
+                <>
+                  <Button 
+                    onClick={handleEdit} 
+                    className="w-full text-base h-12 bg-white/10 hover:bg-white/15 text-white border border-white/20 backdrop-blur-xl transition-all duration-200 rounded-xl" 
+                    size="lg"
+                  >
+                    <Edit className="w-5 h-5 mr-2" />
+                    Edit Contact
+                  </Button>
+                  <Button 
+                    onClick={handleDownload} 
+                    className="w-full text-base h-12 bg-white/10 hover:bg-white/15 text-white border border-white/20 backdrop-blur-xl transition-all duration-200 rounded-xl" 
+                    size="lg"
+                  >
+                    <Download className="w-5 h-5 mr-2" />
+                    Download VCF
+                  </Button>
+                </>
+              ) : (
+                <div className="grid grid-cols-2 gap-4">
+                  <Button 
+                    onClick={handleSave}
+                    disabled={isSaving}
+                    className="text-base h-12 bg-green-600/20 hover:bg-green-600/30 text-green-100 border border-green-500/30 backdrop-blur-xl transition-all duration-200 rounded-xl" 
+                    size="lg"
+                  >
+                    {isSaving ? (
+                      <Loader2 className="w-5 h-5 mr-2 animate-spin" />
+                    ) : (
+                      <Save className="w-5 h-5 mr-2" />
+                    )}
+                    {isSaving ? "Saving..." : "Save VCF"}
+                  </Button>
+                  <Button 
+                    onClick={handleDownload} 
+                    className="text-base h-12 bg-white/10 hover:bg-white/15 text-white border border-white/20 backdrop-blur-xl transition-all duration-200 rounded-xl" 
+                    size="lg"
+                  >
+                    <Download className="w-5 h-5 mr-2" />
+                    Download VCF
+                  </Button>
+                </div>
+              )}
             </div>
           </div>
 
