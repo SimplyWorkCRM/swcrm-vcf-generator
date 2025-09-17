@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect } from "react";
 import { useSearchParams, Navigate } from "react-router-dom";
 import { ContactData, downloadVCF } from "@/lib/vcfGenerator";
 import { vCardApi, VCardApiError } from "@/lib/vCardApi";
@@ -59,33 +59,11 @@ const Index = () => {
   const [isSaving, setSaving] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [isNewUser, setIsNewUser] = useState(false);
-  const [isButtonsSticky, setIsButtonsSticky] = useState(true);
-  const buttonsSectionRef = useRef<HTMLDivElement>(null);
 
   // Check if location_id is provided
   if (!locationId) {
     return <Unauthorized />;
   }
-
-  // Set up intersection observer for sticky buttons
-  useEffect(() => {
-    if (!buttonsSectionRef.current) return;
-
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        // When the static buttons section is not visible, show sticky buttons
-        setIsButtonsSticky(!entry.isIntersecting);
-      },
-      {
-        threshold: 0,
-        rootMargin: "0px"
-      }
-    );
-
-    observer.observe(buttonsSectionRef.current);
-
-    return () => observer.disconnect();
-  }, []);
 
   useEffect(() => {
     const fetchVCardData = async () => {
@@ -208,7 +186,7 @@ const Index = () => {
       </header>
 
       {/* Main Content */}
-      <main className="container mx-auto px-4 pb-12">
+      <main className="container mx-auto px-4 pb-32">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 max-w-7xl mx-auto items-start">
           {/* Form Section */}
           <div className="space-y-6">
@@ -218,54 +196,6 @@ const Index = () => {
               isReadOnly={!isEditMode}
               onHelpClick={() => setHelpOpen(true)}
             />
-            
-            {/* Action Buttons - Static Position */}
-            <div ref={buttonsSectionRef} className="glass-card p-6">
-              {!isEditMode ? (
-                <div className="grid grid-cols-2 gap-4">
-                  <Button
-                    onClick={handleEdit}
-                    className="text-base h-12 bg-white/10 hover:bg-white/15 text-white border border-white/20 backdrop-blur-xl transition-all duration-200 rounded-xl"
-                    size="lg"
-                  >
-                    <Edit className="w-5 h-5 mr-2" />
-                    Edit Contact
-                  </Button>
-                  <Button
-                    onClick={handleDownload}
-                    className="text-base h-12 bg-white/10 hover:bg-white/15 text-white border border-white/20 backdrop-blur-xl transition-all duration-200 rounded-xl"
-                    size="lg"
-                  >
-                    <Download className="w-5 h-5 mr-2" />
-                    Download VCF
-                  </Button>
-                </div>
-              ) : (
-                <div className="grid grid-cols-2 gap-4">
-                  <Button 
-                    onClick={handleSave}
-                    disabled={isSaving}
-                    className="text-base h-12 bg-green-600/20 hover:bg-green-600/30 text-green-100 border border-green-500/30 backdrop-blur-xl transition-all duration-200 rounded-xl" 
-                    size="lg"
-                  >
-                    {isSaving ? (
-                      <Loader2 className="w-5 h-5 mr-2 animate-spin" />
-                    ) : (
-                      <Save className="w-5 h-5 mr-2" />
-                    )}
-                    {isSaving ? "Saving..." : "Save VCF"}
-                  </Button>
-                  <Button 
-                    onClick={handleDownload} 
-                    className="text-base h-12 bg-white/10 hover:bg-white/15 text-white border border-white/20 backdrop-blur-xl transition-all duration-200 rounded-xl" 
-                    size="lg"
-                  >
-                    <Download className="w-5 h-5 mr-2" />
-                    Download VCF
-                  </Button>
-                </div>
-              )}
-            </div>
           </div>
 
           {/* Preview Section */}
@@ -276,56 +206,61 @@ const Index = () => {
       </main>
 
       {/* Floating Action Buttons */}
-      {isButtonsSticky && (
-        <div className="fixed bottom-6 left-1/2 transform -translate-x-1/2 z-50 w-full max-w-md px-4">
-          <div className="glass-card p-4 backdrop-blur-xl border border-white/20 shadow-xl">
-            {!isEditMode ? (
-              <div className="grid grid-cols-2 gap-4">
-                <Button
-                  onClick={handleEdit}
-                  className="text-base h-12 bg-white/10 hover:bg-white/15 text-white border border-white/20 backdrop-blur-xl transition-all duration-200 rounded-xl"
-                  size="lg"
-                >
-                  <Edit className="w-5 h-5 mr-2" />
-                  Edit Contact
-                </Button>
-                <Button
-                  onClick={handleDownload}
-                  className="text-base h-12 bg-white/10 hover:bg-white/15 text-white border border-white/20 backdrop-blur-xl transition-all duration-200 rounded-xl"
-                  size="lg"
-                >
-                  <Download className="w-5 h-5 mr-2" />
-                  Download VCF
-                </Button>
-              </div>
-            ) : (
-              <div className="grid grid-cols-2 gap-4">
-                <Button
-                  onClick={handleSave}
-                  disabled={isSaving}
-                  className="text-base h-12 bg-green-600/20 hover:bg-green-600/30 text-green-100 border border-green-500/30 backdrop-blur-xl transition-all duration-200 rounded-xl"
-                  size="lg"
-                >
-                  {isSaving ? (
-                    <Loader2 className="w-5 h-5 mr-2 animate-spin" />
+      <div className="fixed bottom-6 left-0 right-0 z-50 animate-in slide-in-from-bottom-5 duration-300">
+          <div className="container mx-auto px-4">
+            <div className="max-w-7xl mx-auto">
+              <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                <div className="glass-card p-4 backdrop-blur-xl border border-white/20 shadow-2xl">
+                  {!isEditMode ? (
+                    <div className="grid grid-cols-2 gap-4">
+                      <Button
+                        onClick={handleEdit}
+                        className="text-base h-12 bg-white/10 hover:bg-white/15 text-white border border-white/20 backdrop-blur-xl transition-all duration-200 rounded-xl"
+                        size="lg"
+                      >
+                        <Edit className="w-5 h-5 mr-2" />
+                        Edit Contact
+                      </Button>
+                      <Button
+                        onClick={handleDownload}
+                        className="text-base h-12 bg-white/10 hover:bg-white/15 text-white border border-white/20 backdrop-blur-xl transition-all duration-200 rounded-xl"
+                        size="lg"
+                      >
+                        <Download className="w-5 h-5 mr-2" />
+                        Download VCF
+                      </Button>
+                    </div>
                   ) : (
-                    <Save className="w-5 h-5 mr-2" />
+                    <div className="grid grid-cols-2 gap-4">
+                      <Button
+                        onClick={handleSave}
+                        disabled={isSaving}
+                        className="text-base h-12 bg-green-600/20 hover:bg-green-600/30 text-green-100 border border-green-500/30 backdrop-blur-xl transition-all duration-200 rounded-xl"
+                        size="lg"
+                      >
+                        {isSaving ? (
+                          <Loader2 className="w-5 h-5 mr-2 animate-spin" />
+                        ) : (
+                          <Save className="w-5 h-5 mr-2" />
+                        )}
+                        {isSaving ? "Saving..." : "Save VCF"}
+                      </Button>
+                      <Button
+                        onClick={handleDownload}
+                        className="text-base h-12 bg-white/10 hover:bg-white/15 text-white border border-white/20 backdrop-blur-xl transition-all duration-200 rounded-xl"
+                        size="lg"
+                      >
+                        <Download className="w-5 h-5 mr-2" />
+                        Download VCF
+                      </Button>
+                    </div>
                   )}
-                  {isSaving ? "Saving..." : "Save VCF"}
-                </Button>
-                <Button
-                  onClick={handleDownload}
-                  className="text-base h-12 bg-white/10 hover:bg-white/15 text-white border border-white/20 backdrop-blur-xl transition-all duration-200 rounded-xl"
-                  size="lg"
-                >
-                  <Download className="w-5 h-5 mr-2" />
-                  Download VCF
-                </Button>
+                </div>
+                <div className="hidden lg:block"></div>
               </div>
-            )}
+            </div>
           </div>
         </div>
-      )}
 
       {/* Help Modal */}
       <HelpModal open={helpOpen} onOpenChange={setHelpOpen} />
