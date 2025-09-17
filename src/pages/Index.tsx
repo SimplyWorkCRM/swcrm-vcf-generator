@@ -61,14 +61,17 @@ const Index = () => {
       });
     }
   };
-  return <div className="min-h-screen bg-gradient-to-br from-background via-background/98 to-secondary/10">
+  return <div className="min-h-screen" style={{
+    background: "linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 25%, #404040 50%, #1f1f1f 75%, #0a0a0a 100%)"
+  }}>
       {/* Compact Header */}
-      <header className="container mx-auto px-4 py-4">
-        <div className="flex items-center gap-3 mb-6">
-          <div className="w-8 h-8 bg-gradient-to-br from-primary to-primary/80 rounded-lg flex items-center justify-center">
-            <Smartphone className="w-4 h-4 text-primary-foreground" />
+      <header className="container mx-auto px-4 py-6">
+        <div className="flex items-center gap-3 mb-8">
+          <div className="w-10 h-10 rounded-xl backdrop-blur-xl border border-white/20 flex items-center justify-center"
+               style={{ background: "rgba(255, 255, 255, 0.1)" }}>
+            <Smartphone className="w-5 h-5 text-white" />
           </div>
-          <h1 className="text-2xl font-bold bg-gradient-to-r from-primary to-primary/70 bg-clip-text text-transparent">
+          <h1 className="text-3xl font-bold text-white">
             VCF Generator
           </h1>
         </div>
@@ -92,11 +95,7 @@ const Index = () => {
 
           {/* Preview Section */}
           <div className="lg:sticky lg:top-4 h-fit">
-            <div className="glass-card p-6">
-              <div className="ios-preview-container">
-                <IOSContactPreview contact={contact} />
-              </div>
-            </div>
+            <IOSContactPreview contact={contact} />
           </div>
         </div>
       </main>

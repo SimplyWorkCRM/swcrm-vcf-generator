@@ -24,8 +24,8 @@ export const ContactForm = ({ contact, onContactChange }: ContactFormProps) => {
   return (
     <div className="glass-card p-6 space-y-6">
       <div className="space-y-6">
-        <div className="glass-card bg-card/50 p-4 rounded-xl mb-6">
-          <h2 className="text-xl font-semibold bg-gradient-to-r from-foreground to-foreground/70 bg-clip-text text-transparent">
+        <div className="glass-card bg-white/5 p-4 rounded-xl mb-6 border border-white/10">
+          <h2 className="text-xl font-semibold text-white">
             Contact Information
           </h2>
         </div>
@@ -33,7 +33,7 @@ export const ContactForm = ({ contact, onContactChange }: ContactFormProps) => {
         {/* Name Fields */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           <div className="space-y-2">
-            <Label htmlFor="first_name">First Name</Label>
+            <Label htmlFor="first_name" className="form-label">First Name</Label>
             <Input
               id="first_name"
               className="form-input"
@@ -43,7 +43,7 @@ export const ContactForm = ({ contact, onContactChange }: ContactFormProps) => {
             />
           </div>
           <div className="space-y-2">
-            <Label htmlFor="last_name">Last Name</Label>
+            <Label htmlFor="last_name" className="form-label">Last Name</Label>
             <Input
               id="last_name"
               className="form-input"
@@ -53,10 +53,10 @@ export const ContactForm = ({ contact, onContactChange }: ContactFormProps) => {
             />
           </div>
         </div>
-
+        
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           <div className="space-y-2">
-            <Label htmlFor="name_prefix">Prefix</Label>
+            <Label htmlFor="name_prefix" className="form-label">Prefix</Label>
             <Input
               id="name_prefix"
               className="form-input"
@@ -66,7 +66,7 @@ export const ContactForm = ({ contact, onContactChange }: ContactFormProps) => {
             />
           </div>
           <div className="space-y-2">
-            <Label htmlFor="name_suffix">Suffix</Label>
+            <Label htmlFor="name_suffix" className="form-label">Suffix</Label>
             <Input
               id="name_suffix"
               className="form-input"
@@ -76,10 +76,10 @@ export const ContactForm = ({ contact, onContactChange }: ContactFormProps) => {
             />
           </div>
         </div>
-
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+        
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           <div className="space-y-2">
-            <Label htmlFor="middle_name">Middle Name</Label>
+            <Label htmlFor="middle_name" className="form-label">Middle Name</Label>
             <Input
               id="middle_name"
               className="form-input"
@@ -89,7 +89,7 @@ export const ContactForm = ({ contact, onContactChange }: ContactFormProps) => {
             />
           </div>
           <div className="space-y-2">
-            <Label htmlFor="nickname">Nickname</Label>
+            <Label htmlFor="nickname" className="form-label">Nickname</Label>
             <Input
               id="nickname"
               className="form-input"
@@ -98,21 +98,22 @@ export const ContactForm = ({ contact, onContactChange }: ContactFormProps) => {
               placeholder="Johnny"
             />
           </div>
-          <div className="space-y-2">
-            <Label htmlFor="organization">Organization</Label>
-            <Input
-              id="organization"
-              className="form-input"
-              value={contact.organization}
-              onChange={(e) => updateContact('organization', e.target.value)}
-              placeholder="Company Inc."
-            />
-          </div>
         </div>
-
+        
+        <div className="space-y-2">
+          <Label htmlFor="organization" className="form-label">Organization</Label>
+          <Input
+            id="organization"
+            className="form-input"
+            value={contact.organization}
+            onChange={(e) => updateContact('organization', e.target.value)}
+            placeholder="Company Name"
+          />
+        </div>
+        
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           <div className="space-y-2">
-            <Label htmlFor="title">Title</Label>
+            <Label htmlFor="title" className="form-label">Title</Label>
             <Input
               id="title"
               className="form-input"
@@ -122,7 +123,7 @@ export const ContactForm = ({ contact, onContactChange }: ContactFormProps) => {
             />
           </div>
           <div className="space-y-2">
-            <Label htmlFor="role">Role</Label>
+            <Label htmlFor="role" className="form-label">Role</Label>
             <Input
               id="role"
               className="form-input"
@@ -133,12 +134,15 @@ export const ContactForm = ({ contact, onContactChange }: ContactFormProps) => {
           </div>
         </div>
 
-        {/* Contact Methods */}
-        <div className="glass-card bg-card/30 p-5 rounded-xl space-y-4">
-          <h3 className="text-lg font-medium text-foreground/90 mb-4">Contact Methods</h3>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+        {/* Contact Methods Section */}
+        <div className="glass-card bg-white/5 p-4 rounded-xl mb-6 border border-white/10">
+          <h3 className="text-lg font-semibold text-white">Contact Methods</h3>
+        </div>
+        
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div className="grid grid-cols-1 gap-4">
             <div className="space-y-2">
-              <Label htmlFor="email">Personal Email</Label>
+              <Label htmlFor="email" className="form-label">Personal Email</Label>
               <Input
                 id="email"
                 type="email"
@@ -149,7 +153,7 @@ export const ContactForm = ({ contact, onContactChange }: ContactFormProps) => {
               />
             </div>
             <div className="space-y-2">
-              <Label htmlFor="work_email">Work Email</Label>
+              <Label htmlFor="work_email" className="form-label">Work Email</Label>
               <Input
                 id="work_email"
                 type="email"
@@ -160,12 +164,13 @@ export const ContactForm = ({ contact, onContactChange }: ContactFormProps) => {
               />
             </div>
           </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          
+          <div className="grid grid-cols-1 gap-4">
             <div className="space-y-2">
-              <Label htmlFor="cell_phone">Cell Phone</Label>
+              <Label htmlFor="cell_phone" className="form-label">Cell Phone</Label>
               <Input
                 id="cell_phone"
+                type="tel"
                 className="form-input"
                 value={contact.cell_phone}
                 onChange={(e) => updateContact('cell_phone', e.target.value)}
@@ -173,9 +178,10 @@ export const ContactForm = ({ contact, onContactChange }: ContactFormProps) => {
               />
             </div>
             <div className="space-y-2">
-              <Label htmlFor="work_phone">Work Phone</Label>
+              <Label htmlFor="work_phone" className="form-label">Work Phone</Label>
               <Input
                 id="work_phone"
+                type="tel"
                 className="form-input"
                 value={contact.work_phone}
                 onChange={(e) => updateContact('work_phone', e.target.value)}
@@ -183,60 +189,77 @@ export const ContactForm = ({ contact, onContactChange }: ContactFormProps) => {
               />
             </div>
           </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-            <div className="space-y-2">
-              <Label htmlFor="home_phone">Home Phone</Label>
-              <Input
-                id="home_phone"
-                className="form-input"
-                value={contact.home_phone}
-                onChange={(e) => updateContact('home_phone', e.target.value)}
-                placeholder="+1 (555) 123-4567"
-              />
-            </div>
-            <div className="space-y-2">
-              <Label htmlFor="pager_phone">Pager Phone</Label>
-              <Input
-                id="pager_phone"
-                className="form-input"
-                value={contact.pager_phone}
-                onChange={(e) => updateContact('pager_phone', e.target.value)}
-                placeholder="+1 (555) 555-5555"
-              />
-            </div>
+        </div>
+        
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div className="space-y-2">
+            <Label htmlFor="home_phone" className="form-label">Home Phone</Label>
+            <Input
+              id="home_phone"
+              type="tel"
+              className="form-input"
+              value={contact.home_phone}
+              onChange={(e) => updateContact('home_phone', e.target.value)}
+              placeholder="+1 (555) 111-2222"
+            />
           </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-1 gap-4">
-            <div className="space-y-2">
-              <Label htmlFor="work_url">Work Website</Label>
-              <Input
-                id="work_url"
-                className="form-input"
-                value={contact.work_url}
-                onChange={(e) => updateContact('work_url', e.target.value)}
-                placeholder="company.com"
-              />
-            </div>
+          <div className="space-y-2">
+            <Label htmlFor="pager_phone" className="form-label">Pager Phone</Label>
+            <Input
+              id="pager_phone"
+              type="tel"
+              className="form-input"
+              value={contact.pager_phone}
+              onChange={(e) => updateContact('pager_phone', e.target.value)}
+              placeholder="+1 (555) 333-4444"
+            />
+          </div>
+        </div>
+        
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div className="space-y-2">
+            <Label htmlFor="work_url" className="form-label">Work Website</Label>
+            <Input
+              id="work_url"
+              type="url"
+              className="form-input"
+              value={contact.work_url}
+              onChange={(e) => updateContact('work_url', e.target.value)}
+              placeholder="company.com"
+            />
+          </div>
+          <div className="space-y-2">
+            <Label htmlFor="url" className="form-label">Personal Website</Label>
+            <Input
+              id="url"
+              type="url"
+              className="form-input"
+              value={contact.url}
+              onChange={(e) => updateContact('url', e.target.value)}
+              placeholder="https://johndoe.com"
+            />
           </div>
         </div>
 
-        {/* Home Address */}
-        <div className="glass-card bg-card/30 p-5 rounded-xl space-y-4">
-          <h3 className="text-lg font-medium text-foreground/90 mb-4">Home Address</h3>
+        {/* Home Address Section */}
+        <div className="glass-card bg-white/5 p-4 rounded-xl mb-6 border border-white/10">
+          <h3 className="text-lg font-semibold text-white">Home Address</h3>
+        </div>
+        
+        <div className="grid grid-cols-1 gap-4">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             <div className="space-y-2">
-              <Label htmlFor="home_street">Street</Label>
+              <Label htmlFor="home_street" className="form-label">Street</Label>
               <Input
                 id="home_street"
                 className="form-input"
                 value={contact.home_address.street}
                 onChange={(e) => updateAddress('home_address', 'street', e.target.value)}
-                placeholder="123 Main St"
+                placeholder="123 Main Street"
               />
             </div>
             <div className="space-y-2">
-              <Label htmlFor="home_city">City</Label>
+              <Label htmlFor="home_city" className="form-label">City</Label>
               <Input
                 id="home_city"
                 className="form-input"
@@ -248,7 +271,7 @@ export const ContactForm = ({ contact, onContactChange }: ContactFormProps) => {
           </div>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
             <div className="space-y-2">
-              <Label htmlFor="home_state">State/Province</Label>
+              <Label htmlFor="home_state" className="form-label">State/Province</Label>
               <Input
                 id="home_state"
                 className="form-input"
@@ -258,7 +281,7 @@ export const ContactForm = ({ contact, onContactChange }: ContactFormProps) => {
               />
             </div>
             <div className="space-y-2">
-              <Label htmlFor="home_postal">Postal Code</Label>
+              <Label htmlFor="home_postal" className="form-label">Postal Code</Label>
               <Input
                 id="home_postal"
                 className="form-input"
@@ -268,7 +291,7 @@ export const ContactForm = ({ contact, onContactChange }: ContactFormProps) => {
               />
             </div>
             <div className="space-y-2">
-              <Label htmlFor="home_country">Country</Label>
+              <Label htmlFor="home_country" className="form-label">Country</Label>
               <Input
                 id="home_country"
                 className="form-input"
@@ -280,12 +303,15 @@ export const ContactForm = ({ contact, onContactChange }: ContactFormProps) => {
           </div>
         </div>
 
-        {/* Work Address */}
-        <div className="glass-card bg-card/30 p-5 rounded-xl space-y-4">
-          <h3 className="text-lg font-medium text-foreground/90 mb-4">Work Address</h3>
+        {/* Work Address Section */}
+        <div className="glass-card bg-white/5 p-4 rounded-xl mb-6 border border-white/10">
+          <h3 className="text-lg font-semibold text-white">Work Address</h3>
+        </div>
+        
+        <div className="grid grid-cols-1 gap-4">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             <div className="space-y-2">
-              <Label htmlFor="work_street">Street</Label>
+              <Label htmlFor="work_street" className="form-label">Street</Label>
               <Input
                 id="work_street"
                 className="form-input"
@@ -295,7 +321,7 @@ export const ContactForm = ({ contact, onContactChange }: ContactFormProps) => {
               />
             </div>
             <div className="space-y-2">
-              <Label htmlFor="work_city">City</Label>
+              <Label htmlFor="work_city" className="form-label">City</Label>
               <Input
                 id="work_city"
                 className="form-input"
@@ -307,7 +333,7 @@ export const ContactForm = ({ contact, onContactChange }: ContactFormProps) => {
           </div>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
             <div className="space-y-2">
-              <Label htmlFor="work_state">State/Province</Label>
+              <Label htmlFor="work_state" className="form-label">State/Province</Label>
               <Input
                 id="work_state"
                 className="form-input"
@@ -317,17 +343,17 @@ export const ContactForm = ({ contact, onContactChange }: ContactFormProps) => {
               />
             </div>
             <div className="space-y-2">
-              <Label htmlFor="work_postal">Postal Code</Label>
+              <Label htmlFor="work_postal" className="form-label">Postal Code</Label>
               <Input
                 id="work_postal"
                 className="form-input"
                 value={contact.work_address.postal_code}
                 onChange={(e) => updateAddress('work_address', 'postal_code', e.target.value)}
-                placeholder="94107"
+                placeholder="94105"
               />
             </div>
             <div className="space-y-2">
-              <Label htmlFor="work_country">Country</Label>
+              <Label htmlFor="work_country" className="form-label">Country</Label>
               <Input
                 id="work_country"
                 className="form-input"
@@ -339,36 +365,28 @@ export const ContactForm = ({ contact, onContactChange }: ContactFormProps) => {
           </div>
         </div>
 
-        {/* Additional Info */}
-        <div className="glass-card bg-card/30 p-5 rounded-xl space-y-4">
-          <h3 className="text-lg font-medium text-foreground/90 mb-4">Additional Information</h3>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-            <div className="space-y-2">
-              <Label htmlFor="url">Personal Website</Label>
-              <Input
-                id="url"
-                className="form-input"
-                value={contact.url}
-                onChange={(e) => updateContact('url', e.target.value)}
-                placeholder="https://example.com"
-              />
-            </div>
-            <div className="space-y-2">
-              <Label htmlFor="birthday">Birthday</Label>
-              <Input
-                id="birthday"
-                type="date"
-                className="form-input"
-                value={contact.birthday}
-                onChange={(e) => updateContact('birthday', e.target.value)}
-              />
-            </div>
-          </div>
+        {/* Additional Information Section */}
+        <div className="glass-card bg-white/5 p-4 rounded-xl mb-6 border border-white/10">
+          <h3 className="text-lg font-semibold text-white">Additional Information</h3>
+        </div>
+        
+        <div className="grid grid-cols-1 gap-4">
           <div className="space-y-2">
-            <Label htmlFor="note">Notes</Label>
+            <Label htmlFor="birthday" className="form-label">Birthday</Label>
+            <Input
+              id="birthday"
+              type="date"
+              className="form-input"
+              value={contact.birthday}
+              onChange={(e) => updateContact('birthday', e.target.value)}
+            />
+          </div>
+          
+          <div className="space-y-2">
+            <Label htmlFor="note" className="form-label">Notes</Label>
             <Textarea
               id="note"
-              className="form-input min-h-20"
+              className="form-input min-h-[100px] resize-none"
               value={contact.note}
               onChange={(e) => updateContact('note', e.target.value)}
               placeholder="Additional notes about this contact..."
