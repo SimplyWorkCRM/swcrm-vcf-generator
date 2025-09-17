@@ -8,7 +8,7 @@ interface IOSContactPreviewProps {
 
 const gradientVariants = {
   vibrant: "linear-gradient(135deg, #667eea 0%, #764ba2 25%, #f093fb 50%, #f5576c 75%, #4facfe 100%)",
-  dark: "linear-gradient(135deg, #2D1B69 0%, #11998e 25%, #38ef7d 50%, #005C98 75%, #1B2951 100%)",
+  dark: "linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 25%, #404040 50%, #1f1f1f 75%, #0a0a0a 100%)",
   sunset: "linear-gradient(135deg, #ff7e5f 0%, #feb47b 25%, #ff6b6b 50%, #4ecdc4 75%, #45b7d1 100%)"
 };
 
