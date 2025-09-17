@@ -126,13 +126,33 @@ All colors MUST be HSL.
 
 @layer components {
   .glass-card {
-    @apply bg-card/70 backdrop-blur-xl border border-glass-border shadow-lg;
+    @apply bg-card/90 backdrop-blur-md border border-border/20 rounded-2xl;
+    box-shadow: 
+      0 2px 12px hsl(var(--foreground) / 0.05),
+      inset 0 1px 0 hsl(var(--foreground) / 0.02);
+    transition: all 0.2s ease-out;
+  }
+  
+  .glass-card:hover {
+    @apply bg-card/95;
+    box-shadow: 
+      0 4px 16px hsl(var(--foreground) / 0.08),
+      inset 0 1px 0 hsl(var(--foreground) / 0.03);
+    transform: translateY(-1px);
   }
   
   .ios-button {
-    @apply bg-primary text-primary-foreground rounded-2xl px-6 py-3 font-medium;
-    @apply transition-all duration-200 hover:scale-105 active:scale-95;
-    @apply shadow-md hover:shadow-lg;
+    @apply bg-primary text-primary-foreground rounded-xl px-6 py-3 font-medium;
+    @apply transition-all duration-200 hover:scale-[1.02] active:scale-95;
+    box-shadow: 
+      0 2px 8px hsl(var(--primary) / 0.2),
+      inset 0 1px 0 hsl(var(--primary-foreground) / 0.1);
+  }
+  
+  .ios-button:hover {
+    box-shadow: 
+      0 3px 12px hsl(var(--primary) / 0.25),
+      inset 0 1px 0 hsl(var(--primary-foreground) / 0.15);
   }
   
   .contact-card {
@@ -225,8 +245,17 @@ All colors MUST be HSL.
   }
   
   .form-input {
-    @apply bg-input border border-input-border rounded-xl px-4 py-3;
-    @apply focus:border-ring focus:ring-2 focus:ring-ring/20;
-    @apply transition-all duration-200;
+    @apply bg-background/95 border border-border/30 rounded-xl px-4 py-3;
+    @apply focus:border-primary/40 focus:ring-2 focus:ring-primary/10 focus:bg-background;
+    @apply transition-all duration-200 backdrop-blur-sm;
+    font-size: 16px;
+    box-shadow: 0 1px 3px hsl(var(--foreground) / 0.03);
+  }
+  
+  .form-input:focus {
+    box-shadow: 
+      0 0 0 3px hsl(var(--primary) / 0.08),
+      0 2px 8px hsl(var(--foreground) / 0.04);
+    outline: none;
   }
 }
