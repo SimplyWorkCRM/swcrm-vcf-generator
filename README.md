@@ -1,73 +1,85 @@
-# Welcome to your Lovable project
+# iOS Contact Card Generator
 
-## Project info
+A modern web application for generating professional VCF (vCard) contact files with a beautiful iOS-style contact preview.
 
-**URL**: https://lovable.dev/projects/4660f183-ae03-493f-9150-0afcacb04f15
+## Features
 
-## How can I edit this code?
+- **Real-time iOS Contact Preview**: See exactly how your contact will look on an iPhone
+- **Professional VCF Generation**: Create standard vCard files compatible with all major contact applications
+- **Clean, Modern UI**: Built with React and Tailwind CSS for a responsive, beautiful interface
+- **Cross-Platform Compatible**: Works with iPhone, Android, and all major contact management systems
+- **Multiple Contact Fields**: Support for phone numbers, emails, addresses, websites, and more
 
-There are several ways of editing your application.
+## Getting Started
 
-**Use Lovable**
+### Prerequisites
 
-Simply visit the [Lovable Project](https://lovable.dev/projects/4660f183-ae03-493f-9150-0afcacb04f15) and start prompting.
+- Node.js 18+ and npm
 
-Changes made via Lovable will be committed automatically to this repo.
+### Installation
 
-**Use your preferred IDE**
+1. Clone the repository:
+```bash
+git clone https://github.com/yourusername/ios-contact-card-gen.git
+cd ios-contact-card-gen
+```
 
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
+2. Install dependencies:
+```bash
+npm install
+```
 
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
-
-Follow these steps:
-
-```sh
-# Step 1: Clone the repository using the project's Git URL.
-git clone <YOUR_GIT_URL>
-
-# Step 2: Navigate to the project directory.
-cd <YOUR_PROJECT_NAME>
-
-# Step 3: Install the necessary dependencies.
-npm i
-
-# Step 4: Start the development server with auto-reloading and an instant preview.
+3. Start the development server:
+```bash
 npm run dev
 ```
 
-**Edit a file directly in GitHub**
+The application will be available at `http://localhost:8080`.
 
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
+### Building for Production
 
-**Use GitHub Codespaces**
+To create a production build:
 
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
+```bash
+npm run build
+```
 
-## What technologies are used for this project?
+The built files will be in the `dist` directory.
 
-This project is built with:
+### Preview Production Build
 
-- Vite
-- TypeScript
-- React
-- shadcn-ui
-- Tailwind CSS
+To preview the production build locally:
 
-## How can I deploy this project?
+```bash
+npm run preview
+```
 
-Simply open [Lovable](https://lovable.dev/projects/4660f183-ae03-493f-9150-0afcacb04f15) and click on Share -> Publish.
+## Tech Stack
 
-## Can I connect a custom domain to my Lovable project?
+- **React** - UI framework
+- **TypeScript** - Type safety
+- **Vite** - Build tool and dev server
+- **Tailwind CSS** - Styling
+- **Shadcn/ui** - UI components
+- **Lucide React** - Icons
 
-Yes, you can!
+## Project Structure
 
-To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
+```
+src/
+├── components/         # React components
+│   ├── ui/            # Reusable UI components
+│   └── ...            # Feature components
+├── hooks/             # Custom React hooks
+├── lib/               # Utility functions
+├── types/             # TypeScript type definitions
+└── main.tsx           # Application entry point
+```
 
-Read more here: [Setting up a custom domain](https://docs.lovable.dev/features/custom-domain#custom-domain)
+## Contributing
+
+Contributions are welcome! Please feel free to submit a Pull Request.
+
+## License
+
+This project is open source and available under the MIT License.

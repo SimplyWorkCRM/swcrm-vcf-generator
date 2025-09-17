@@ -4,6 +4,7 @@ import { ContactData, downloadVCF } from "@/lib/vcfGenerator";
 import { vCardApi, VCardApiError } from "@/lib/vCardApi";
 import { ContactForm } from "@/components/ContactForm";
 import { IOSContactPreview } from "@/components/IOSContactPreview";
+import { HelpModal } from "@/components/HelpModal";
 import { Button } from "@/components/ui/button";
 import { Download, Smartphone, Edit, Save, Loader2 } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
@@ -12,7 +13,8 @@ const Index = () => {
   const { toast } = useToast();
   const [searchParams] = useSearchParams();
   const locationId = searchParams.get("location_id");
-  
+  const [helpOpen, setHelpOpen] = useState(false);
+
   const [contact, setContact] = useState<ContactData>({
     location_id: locationId || "",
     first_name: "",
@@ -170,8 +172,8 @@ const Index = () => {
   }}>
       {/* Compact Header */}
       <header className="container mx-auto px-4 py-6">
-        <div className="max-w-7xl mx-auto">
-          <div className="flex items-center gap-3 mb-8">
+        <div className="max-w-7xl mx-auto mb-8">
+          <div className="flex items-center gap-3">
             <div className="w-10 h-10 rounded-xl backdrop-blur-xl border border-white/20 flex items-center justify-center"
                  style={{ background: "rgba(255, 255, 255, 0.1)" }}>
               <Smartphone className="w-5 h-5 text-white" />
@@ -188,10 +190,11 @@ const Index = () => {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 max-w-7xl mx-auto items-start">
           {/* Form Section */}
           <div className="space-y-6">
-            <ContactForm 
-              contact={contact} 
-              onContactChange={setContact} 
+            <ContactForm
+              contact={contact}
+              onContactChange={setContact}
               isReadOnly={!isEditMode}
+              onHelpClick={() => setHelpOpen(true)}
             />
             
             {/* Action Buttons */}
@@ -249,6 +252,9 @@ const Index = () => {
           </div>
         </div>
       </main>
+
+      {/* Help Modal */}
+      <HelpModal open={helpOpen} onOpenChange={setHelpOpen} />
     </div>;
 };
 export default Index;

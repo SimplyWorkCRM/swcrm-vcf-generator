@@ -3,14 +3,17 @@ import { ContactData } from "@/lib/vcfGenerator";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
+import { Button } from "@/components/ui/button";
+import { HelpCircle } from "lucide-react";
 
 interface ContactFormProps {
   contact: ContactData;
   onContactChange: (contact: ContactData) => void;
   isReadOnly?: boolean;
+  onHelpClick?: () => void;
 }
 
-export const ContactForm = ({ contact, onContactChange, isReadOnly = false }: ContactFormProps) => {
+export const ContactForm = ({ contact, onContactChange, isReadOnly = false, onHelpClick }: ContactFormProps) => {
   const updateContact = (field: string, value: string) => {
     onContactChange({ ...contact, [field]: value });
   };
@@ -25,10 +28,21 @@ export const ContactForm = ({ contact, onContactChange, isReadOnly = false }: Co
   return (
     <div className="glass-card p-6 space-y-6">
       <div className="space-y-6">
-        <div className="glass-card bg-white/5 p-4 rounded-xl mb-6 border border-white/10">
+        <div className="glass-card bg-white/5 p-4 rounded-xl mb-6 border border-white/10 flex items-center justify-between">
           <h2 className="text-xl font-semibold text-white">
             Contact Information
           </h2>
+          {onHelpClick && (
+            <Button
+              onClick={onHelpClick}
+              variant="ghost"
+              size="icon"
+              className="text-white hover:bg-white/10 rounded-lg"
+              aria-label="Open help"
+            >
+              <HelpCircle className="w-5 h-5" />
+            </Button>
+          )}
         </div>
         
         {/* Name Fields */}
