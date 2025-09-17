@@ -220,10 +220,11 @@ All colors MUST be HSL.
   }
   
   .form-input {
-    @apply backdrop-blur-xl border border-white/10 rounded-xl px-4 py-3;
-    @apply focus:border-primary/40 focus:ring-2 focus:ring-primary/20;
+    @apply backdrop-blur-xl rounded-xl px-4 py-3;
+    @apply focus:ring-2 focus:ring-primary/20;
     @apply transition-all duration-300 text-foreground placeholder:text-muted-foreground;
     background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
     font-size: 16px;
     box-shadow: 
       0 2px 8px rgba(0, 0, 0, 0.1),
@@ -231,15 +232,21 @@ All colors MUST be HSL.
   }
   
   .form-input:hover {
-    border-color: rgba(255, 255, 255, 0.2);
-    box-shadow: 
-      0 2px 8px rgba(0, 0, 0, 0.1),
-      inset 0 1px 0 rgba(255, 255, 255, 0.1),
-      0 0 15px hsl(var(--primary) / 0.2);
+    border: 1px solid transparent;
+    background: 
+      linear-gradient(rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.05)),
+      linear-gradient(135deg, hsl(var(--primary)), hsl(var(--primary-glow)), rgba(255, 255, 255, 0.3));
+    background-clip: padding-box, border-box;
+    background-origin: border-box;
   }
   
   .form-input:focus {
-    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid transparent;
+    background: 
+      linear-gradient(rgba(255, 255, 255, 0.08), rgba(255, 255, 255, 0.08)),
+      linear-gradient(135deg, hsl(var(--primary)), hsl(var(--primary-glow)));
+    background-clip: padding-box, border-box;
+    background-origin: border-box;
     box-shadow: 
       0 0 0 3px hsl(var(--primary) / 0.15),
       0 4px 12px rgba(0, 0, 0, 0.15),
