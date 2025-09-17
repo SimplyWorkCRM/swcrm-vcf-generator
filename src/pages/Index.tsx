@@ -79,7 +79,7 @@ const Index = () => {
 
       {/* Main Content */}
       <main className="container mx-auto px-4 pb-12">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 max-w-7xl mx-auto">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 max-w-7xl mx-auto items-start">
           {/* Form Section */}
           <div className="space-y-6">
             <ContactForm contact={contact} onContactChange={setContact} />
