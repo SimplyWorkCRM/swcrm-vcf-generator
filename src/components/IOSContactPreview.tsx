@@ -1,11 +1,21 @@
 import { ContactData } from "@/lib/vcfGenerator";
 import { Phone, Mail, MapPin, Calendar, Globe, User, Building2, MessageCircle, Video, ChevronRight } from "lucide-react";
+import { useState } from "react";
+
 interface IOSContactPreviewProps {
   contact: ContactData;
 }
+
+const gradientVariants = {
+  vibrant: "linear-gradient(135deg, #667eea 0%, #764ba2 25%, #f093fb 50%, #f5576c 75%, #4facfe 100%)",
+  dark: "linear-gradient(135deg, #2D1B69 0%, #11998e 25%, #38ef7d 50%, #005C98 75%, #1B2951 100%)",
+  sunset: "linear-gradient(135deg, #ff7e5f 0%, #feb47b 25%, #ff6b6b 50%, #4ecdc4 75%, #45b7d1 100%)"
+};
+
 export const IOSContactPreview = ({
   contact
 }: IOSContactPreviewProps) => {
+  const [selectedGradient, setSelectedGradient] = useState<keyof typeof gradientVariants>('vibrant');
   const fullName = [contact.name_prefix, contact.first_name, contact.middle_name, contact.last_name, contact.name_suffix].filter(Boolean).join(" ");
   const hasHomeAddress = contact.home_address.street || contact.home_address.city;
   const hasWorkAddress = contact.work_address.street || contact.work_address.city;
@@ -17,7 +27,29 @@ export const IOSContactPreview = ({
     }
     return fullName?.[0]?.toUpperCase() || 'C';
   };
-  return <div className="ios-contact-preview max-w-lg mx-auto">
+  return <div 
+    className="rounded-3xl p-6 max-w-lg mx-auto"
+    style={{ 
+      background: gradientVariants[selectedGradient],
+      boxShadow: 'inset 0 1px 0 rgba(255, 255, 255, 0.1), 0 8px 32px rgba(0, 0, 0, 0.3)'
+    }}
+  >
+      {/* Gradient selector */}
+      <div className="flex justify-center gap-3 mb-6 pt-2">
+        {Object.entries(gradientVariants).map(([key, gradient]) => (
+          <button
+            key={key}
+            onClick={() => setSelectedGradient(key as keyof typeof gradientVariants)}
+            className={`w-8 h-8 rounded-full border-2 transition-all duration-200 hover:scale-110 ${
+              selectedGradient === key 
+                ? 'border-white shadow-lg scale-110' 
+                : 'border-white/50 hover:border-white/80'
+            }`}
+            style={{ background: gradient }}
+            aria-label={`Select ${key} gradient`}
+          />
+        ))}
+      </div>
       {/* Header with large profile photo */}
       <div className="text-center mb-8 pt-8">
         <div className="w-32 h-32 glass-avatar mx-auto mb-6 flex items-center justify-center">
