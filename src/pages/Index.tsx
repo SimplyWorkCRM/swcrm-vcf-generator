@@ -5,9 +5,10 @@ import { IOSContactPreview } from "@/components/IOSContactPreview";
 import { Button } from "@/components/ui/button";
 import { Download, Smartphone } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
-
 const Index = () => {
-  const { toast } = useToast();
+  const {
+    toast
+  } = useToast();
   const [contact, setContact] = useState<ContactData>({
     first_name: "Sead",
     last_name: "Rastoder",
@@ -45,25 +46,22 @@ const Index = () => {
     birthday: "",
     note: ""
   });
-
   const handleDownload = () => {
     try {
       downloadVCF(contact);
       toast({
         title: "Success!",
-        description: "VCF file has been downloaded successfully.",
+        description: "VCF file has been downloaded successfully."
       });
     } catch (error) {
       toast({
         title: "Error",
         description: "Failed to generate VCF file. Please try again.",
-        variant: "destructive",
+        variant: "destructive"
       });
     }
   };
-
-  return (
-    <div className="min-h-screen bg-gradient-to-br from-background via-background/98 to-secondary/10">
+  return <div className="min-h-screen bg-gradient-to-br from-background via-background/98 to-secondary/10">
       {/* Header */}
       <header className="container mx-auto px-4 py-12">
         <div className="text-center mb-12">
@@ -92,11 +90,7 @@ const Index = () => {
             
             {/* Download Button */}
             <div className="glass-card p-6">
-              <Button 
-                onClick={handleDownload}
-                className="ios-button w-full text-base h-12"
-                size="lg"
-              >
+              <Button onClick={handleDownload} className="ios-button w-full text-base h-12" size="lg">
                 <Download className="w-5 h-5 mr-2" />
                 Download VCF
               </Button>
@@ -109,9 +103,7 @@ const Index = () => {
               <div className="glass-card bg-card/50 p-4 mb-6 rounded-xl">
                 <div className="flex items-center gap-3">
                   <Smartphone className="w-5 h-5 text-primary" />
-                  <h2 className="text-xl font-semibold bg-gradient-to-r from-foreground to-foreground/70 bg-clip-text text-transparent">
-                    iOS Preview
-                  </h2>
+                  
                 </div>
               </div>
               <div className="ios-preview-container">
@@ -121,8 +113,6 @@ const Index = () => {
           </div>
         </div>
       </main>
-    </div>
-  );
+    </div>;
 };
-
 export default Index;
