@@ -167,31 +167,29 @@ const Index = () => {
     );
   }
 
-  return <div className="min-h-screen pb-8" style={{
+  return <div className="h-screen flex flex-col overflow-hidden" style={{
     background: "linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 25%, #404040 50%, #1f1f1f 75%, #0a0a0a 100%)"
   }}>
       {/* Compact Header */}
-      <header className="container mx-auto px-4 py-6">
-        <div className="max-w-7xl mx-auto mb-8">
-          <div className="flex items-center gap-3">
-            <div className="w-10 h-10 rounded-xl backdrop-blur-xl border border-white/20 flex items-center justify-center"
-                 style={{ background: "rgba(255, 255, 255, 0.1)" }}>
-              <Smartphone className="w-5 h-5 text-white" />
-            </div>
-            <h1 className="text-3xl font-bold text-white">
-              Contact Card Generator
-            </h1>
+      <header className="px-12 py-8 flex-shrink-0">
+        <div className="flex items-center gap-3">
+          <div className="w-10 h-10 rounded-xl backdrop-blur-xl border border-white/20 flex items-center justify-center"
+               style={{ background: "rgba(255, 255, 255, 0.1)" }}>
+            <Smartphone className="w-5 h-5 text-white" />
           </div>
+          <h1 className="text-3xl font-bold text-white">
+            Contact Card Generator
+          </h1>
         </div>
       </header>
 
-      {/* Main Content */}
-      <main className="container mx-auto px-4 pb-20">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 max-w-7xl mx-auto items-start">
-          {/* Form Section */}
-          <div className="space-y-6">
+      {/* Main Content - Full height with horizontal layout */}
+      <main className="flex-1 flex overflow-hidden px-12 pb-12">
+        <div className="flex flex-col lg:flex-row gap-8 w-full h-full">
+          {/* Form Section - Takes up available space */}
+          <div className="flex-1 flex flex-col space-y-4 min-w-0 lg:h-full h-1/2">
             {/* Action Buttons - Top */}
-            <div className="glass-card p-6">
+            <div className="glass-card p-4 flex-shrink-0">
               {!isEditMode ? (
                 <div className="grid grid-cols-2 gap-4">
                   <Button
@@ -238,64 +236,19 @@ const Index = () => {
               )}
             </div>
 
-            <ContactForm
-              contact={contact}
-              onContactChange={setContact}
-              isReadOnly={!isEditMode}
-              onHelpClick={() => setHelpOpen(true)}
-            />
-
-            {/* Action Buttons - Bottom */}
-            <div className="glass-card p-6">
-              {!isEditMode ? (
-                <div className="grid grid-cols-2 gap-4">
-                  <Button
-                    onClick={handleEdit}
-                    className="text-base h-12 bg-white/10 hover:bg-white/15 text-white border border-white/20 backdrop-blur-xl transition-all duration-200 rounded-xl"
-                    size="lg"
-                  >
-                    <Edit className="w-5 h-5 mr-2" />
-                    Edit Contact
-                  </Button>
-                  <Button
-                    onClick={handleDownload}
-                    className="text-base h-12 bg-white/10 hover:bg-white/15 text-white border border-white/20 backdrop-blur-xl transition-all duration-200 rounded-xl"
-                    size="lg"
-                  >
-                    <Download className="w-5 h-5 mr-2" />
-                    Download VCF
-                  </Button>
-                </div>
-              ) : (
-                <div className="grid grid-cols-2 gap-4">
-                  <Button
-                    onClick={handleSave}
-                    disabled={isSaving}
-                    className="text-base h-12 bg-green-600/20 hover:bg-green-600/30 text-green-100 border border-green-500/30 backdrop-blur-xl transition-all duration-200 rounded-xl"
-                    size="lg"
-                  >
-                    {isSaving ? (
-                      <Loader2 className="w-5 h-5 mr-2 animate-spin" />
-                    ) : (
-                      <Save className="w-5 h-5 mr-2" />
-                    )}
-                    {isSaving ? "Saving..." : "Save VCF"}
-                  </Button>
-                  <Button
-                    onClick={handleDownload}
-                    className="text-base h-12 bg-white/10 hover:bg-white/15 text-white border border-white/20 backdrop-blur-xl transition-all duration-200 rounded-xl"
-                    size="lg"
-                  >
-                    <Download className="w-5 h-5 mr-2" />
-                    Download VCF
-                  </Button>
-                </div>
-              )}
+            {/* Contact Form - Scrollable if needed */}
+            <div className="flex-1 overflow-y-auto custom-scrollbar pr-4">
+              <ContactForm
+                contact={contact}
+                onContactChange={setContact}
+                isReadOnly={!isEditMode}
+                onHelpClick={() => setHelpOpen(true)}
+              />
             </div>
           </div>
 
-          {/* Preview Section */}
-          <div className="lg:sticky lg:top-4 h-fit">
+          {/* Preview Section - Fixed width, scrollable */}
+          <div className="lg:w-[500px] w-full flex-shrink-0 lg:h-full h-1/2 overflow-y-auto overflow-x-hidden custom-scrollbar">
             <IOSContactPreview contact={contact} />
           </div>
         </div>
