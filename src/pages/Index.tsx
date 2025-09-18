@@ -6,7 +6,7 @@ import { ContactForm } from "@/components/ContactForm";
 import { IOSContactPreview } from "@/components/IOSContactPreview";
 import { HelpModal } from "@/components/HelpModal";
 import { Button } from "@/components/ui/button";
-import { Download, Smartphone, Edit, Save, Loader2 } from "lucide-react";
+import { Download, Smartphone, Edit, Save, Loader2, HelpCircle } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 import Unauthorized from "./Unauthorized";
 const Index = () => {
@@ -191,7 +191,7 @@ const Index = () => {
             {/* Action Buttons - Top */}
             <div className="glass-card p-4 flex-shrink-0">
               {!isEditMode ? (
-                <div className="grid grid-cols-2 gap-4">
+                <div className="grid grid-cols-3 gap-4">
                   <Button
                     onClick={handleEdit}
                     className="text-base h-12 bg-white/10 hover:bg-white/15 text-white border border-white/20 backdrop-blur-xl transition-all duration-200 rounded-xl"
@@ -208,9 +208,17 @@ const Index = () => {
                     <Download className="w-5 h-5 mr-2" />
                     Download VCF
                   </Button>
+                  <Button
+                    onClick={() => setHelpOpen(true)}
+                    className="text-base h-12 bg-white/10 hover:bg-white/15 text-white border border-white/20 backdrop-blur-xl transition-all duration-200 rounded-xl"
+                    size="lg"
+                  >
+                    <HelpCircle className="w-5 h-5 mr-2" />
+                    Help
+                  </Button>
                 </div>
               ) : (
-                <div className="grid grid-cols-2 gap-4">
+                <div className="grid grid-cols-3 gap-4">
                   <Button
                     onClick={handleSave}
                     disabled={isSaving}
@@ -232,6 +240,14 @@ const Index = () => {
                     <Download className="w-5 h-5 mr-2" />
                     Download VCF
                   </Button>
+                  <Button
+                    onClick={() => setHelpOpen(true)}
+                    className="text-base h-12 bg-white/10 hover:bg-white/15 text-white border border-white/20 backdrop-blur-xl transition-all duration-200 rounded-xl"
+                    size="lg"
+                  >
+                    <HelpCircle className="w-5 h-5 mr-2" />
+                    Help
+                  </Button>
                 </div>
               )}
             </div>
@@ -242,13 +258,12 @@ const Index = () => {
                 contact={contact}
                 onContactChange={setContact}
                 isReadOnly={!isEditMode}
-                onHelpClick={() => setHelpOpen(true)}
               />
             </div>
           </div>
 
           {/* Preview Section - Fixed width, scrollable */}
-          <div className="lg:w-[500px] w-full flex-shrink-0 lg:h-full h-1/2 overflow-y-auto overflow-x-hidden custom-scrollbar">
+          <div className="lg:w-[500px] w-full flex-shrink-0 lg:h-full h-1/2 overflow-y-auto overflow-x-hidden custom-scrollbar pr-2">
             <IOSContactPreview contact={contact} />
           </div>
         </div>

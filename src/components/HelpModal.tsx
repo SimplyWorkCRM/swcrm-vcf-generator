@@ -17,55 +17,55 @@ interface HelpModalProps {
 export function HelpModal({ open, onOpenChange }: HelpModalProps) {
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
-      <DialogContent className="max-w-2xl max-h-[80vh]">
+      <DialogContent className="max-w-2xl max-h-[80vh] bg-black/90 backdrop-blur-3xl border border-white/20">
         <DialogHeader>
-          <DialogTitle className="flex items-center gap-2">
+          <DialogTitle className="flex items-center gap-2 text-white">
             <HelpCircle className="w-5 h-5" />
             How to Use Contact Card Generator
           </DialogTitle>
-          <DialogDescription>
+          <DialogDescription className="text-white/70">
             Create professional VCF contact files for CRM automation and manual use
           </DialogDescription>
         </DialogHeader>
 
-        <ScrollArea className="h-[500px] pr-4">
+        <ScrollArea className="h-[500px] pr-4 custom-scrollbar">
           <div className="space-y-6">
             {/* Getting Started */}
             <section>
-              <h3 className="font-semibold text-lg mb-3">Getting Started</h3>
-              <p className="text-sm text-muted-foreground mb-2">
+              <h3 className="font-semibold text-lg mb-3 text-white">Getting Started</h3>
+              <p className="text-sm text-white/60 mb-2">
                 This tool helps you create a professional contact card (VCF file) for your business. The generated VCard can be used in CRM automations or downloaded for manual attachment in emails, messages, and other communications.
               </p>
-              <p className="text-sm text-muted-foreground font-medium">
+              <p className="text-sm text-white/80 font-medium">
                 Note: Only one contact card per subaccount is allowed.
               </p>
             </section>
 
             {/* Step by Step Guide */}
             <section>
-              <h3 className="font-semibold text-lg mb-3">Step-by-Step Guide</h3>
+              <h3 className="font-semibold text-lg mb-3 text-white">Step-by-Step Guide</h3>
               <ol className="space-y-3">
                 <li className="flex gap-3">
-                  <span className="flex-shrink-0 w-6 h-6 rounded-full bg-primary/10 text-primary text-sm flex items-center justify-center">1</span>
+                  <span className="flex-shrink-0 w-6 h-6 rounded-full bg-white/10 backdrop-blur-xl border border-white/20 text-white text-sm flex items-center justify-center">1</span>
                   <div>
-                    <p className="font-medium text-sm">Enter Contact Information</p>
-                    <p className="text-sm text-muted-foreground">Fill in the contact form with your business or personal details. All fields are optional except the name.</p>
+                    <p className="font-medium text-sm text-white">Enter Contact Information</p>
+                    <p className="text-sm text-white/60">Fill in the contact form with your business or personal details. All fields are optional except the name.</p>
                   </div>
                 </li>
 
                 <li className="flex gap-3">
-                  <span className="flex-shrink-0 w-6 h-6 rounded-full bg-primary/10 text-primary text-sm flex items-center justify-center">2</span>
+                  <span className="flex-shrink-0 w-6 h-6 rounded-full bg-white/10 backdrop-blur-xl border border-white/20 text-white text-sm flex items-center justify-center">2</span>
                   <div>
-                    <p className="font-medium text-sm">Preview in Real-Time</p>
-                    <p className="text-sm text-muted-foreground">Watch the iOS contact preview on the right update as you type. This shows exactly how the contact will appear on an iPhone.</p>
+                    <p className="font-medium text-sm text-white">Preview in Real-Time</p>
+                    <p className="text-sm text-white/60">Watch the iOS contact preview on the right update as you type. This shows exactly how the contact will appear on an iPhone.</p>
                   </div>
                 </li>
 
                 <li className="flex gap-3">
-                  <span className="flex-shrink-0 w-6 h-6 rounded-full bg-primary/10 text-primary text-sm flex items-center justify-center">3</span>
+                  <span className="flex-shrink-0 w-6 h-6 rounded-full bg-white/10 backdrop-blur-xl border border-white/20 text-white text-sm flex items-center justify-center">3</span>
                   <div>
-                    <p className="font-medium text-sm">Save or Download</p>
-                    <p className="text-sm text-muted-foreground">Click "Save Contact" to save your VCard for CRM use, or "Download VCF" to get the file for manual use.</p>
+                    <p className="font-medium text-sm text-white">Save or Download</p>
+                    <p className="text-sm text-white/60">Click "Save Contact" to save your VCard for CRM use, or "Download VCF" to get the file for manual use.</p>
                   </div>
                 </li>
               </ol>
@@ -73,14 +73,14 @@ export function HelpModal({ open, onOpenChange }: HelpModalProps) {
 
             {/* CRM Automation */}
             <section>
-              <h3 className="font-semibold text-lg mb-3">CRM Automation</h3>
-              <div className="bg-primary/5 p-4 rounded-lg space-y-2">
+              <h3 className="font-semibold text-lg mb-3 text-white">CRM Automation</h3>
+              <div className="glass-card p-4 rounded-xl space-y-2">
                 <div className="flex items-start gap-2">
-                  <Tag className="w-4 h-4 mt-0.5 text-primary" />
+                  <Tag className="w-4 h-4 mt-0.5 text-white/80" />
                   <div>
-                    <p className="font-medium text-sm">How to Use in CRM</p>
-                    <p className="text-xs text-muted-foreground">
-                      When your VCard is saved, it can be automatically sent in CRM workflows. Simply add the tag <span className="font-mono bg-primary/10 px-1 rounded">"send vcard"</span> to any contact, and the system will automatically send them your VCard.
+                    <p className="font-medium text-sm text-white">How to Use in CRM</p>
+                    <p className="text-xs text-white/60">
+                      When your VCard is saved, it can be automatically sent in CRM workflows. Simply add the tag <span className="font-mono bg-white/10 px-1 rounded text-white/80">"send vcard"</span> to any contact, and the system will automatically send them your VCard.
                     </p>
                   </div>
                 </div>
@@ -89,13 +89,13 @@ export function HelpModal({ open, onOpenChange }: HelpModalProps) {
 
             {/* Manual Use */}
             <section>
-              <h3 className="font-semibold text-lg mb-3">Manual Use</h3>
-              <div className="bg-muted/50 p-4 rounded-lg space-y-2">
+              <h3 className="font-semibold text-lg mb-3 text-white">Manual Use</h3>
+              <div className="glass-card p-4 rounded-xl space-y-2">
                 <div className="flex items-start gap-2">
-                  <FileText className="w-4 h-4 mt-0.5 text-muted-foreground" />
+                  <FileText className="w-4 h-4 mt-0.5 text-white/80" />
                   <div>
-                    <p className="font-medium text-sm">Download and Attach</p>
-                    <p className="text-xs text-muted-foreground">
+                    <p className="font-medium text-sm text-white">Download and Attach</p>
+                    <p className="text-xs text-white/60">
                       Download the VCF file to manually attach it to emails, messages, or any other communication channel. Recipients can open the file to add your contact information directly to their phone or computer contacts.
                     </p>
                   </div>
@@ -105,37 +105,37 @@ export function HelpModal({ open, onOpenChange }: HelpModalProps) {
 
             {/* Available Fields */}
             <section>
-              <h3 className="font-semibold text-lg mb-3">Available Fields</h3>
+              <h3 className="font-semibold text-lg mb-3 text-white">Available Fields</h3>
               <div className="space-y-2">
                 <div className="flex items-start gap-2">
-                  <User className="w-4 h-4 mt-0.5 text-muted-foreground" />
+                  <User className="w-4 h-4 mt-0.5 text-white/60" />
                   <div>
-                    <p className="font-medium text-sm">Personal Information</p>
-                    <p className="text-xs text-muted-foreground">Name (with prefix/suffix), nickname, birthday</p>
+                    <p className="font-medium text-sm text-white">Personal Information</p>
+                    <p className="text-xs text-white/50">Name (with prefix/suffix), nickname, birthday</p>
                   </div>
                 </div>
 
                 <div className="flex items-start gap-2">
-                  <Phone className="w-4 h-4 mt-0.5 text-muted-foreground" />
+                  <Phone className="w-4 h-4 mt-0.5 text-white/60" />
                   <div>
-                    <p className="font-medium text-sm">Phone Numbers</p>
-                    <p className="text-xs text-muted-foreground">Cell, work, home, and pager numbers</p>
+                    <p className="font-medium text-sm text-white">Phone Numbers</p>
+                    <p className="text-xs text-white/50">Cell, work, home, and pager numbers</p>
                   </div>
                 </div>
 
                 <div className="flex items-start gap-2">
-                  <Mail className="w-4 h-4 mt-0.5 text-muted-foreground" />
+                  <Mail className="w-4 h-4 mt-0.5 text-white/60" />
                   <div>
-                    <p className="font-medium text-sm">Email Addresses</p>
-                    <p className="text-xs text-muted-foreground">Personal and work email addresses</p>
+                    <p className="font-medium text-sm text-white">Email Addresses</p>
+                    <p className="text-xs text-white/50">Personal and work email addresses</p>
                   </div>
                 </div>
 
                 <div className="flex items-start gap-2">
-                  <Building className="w-4 h-4 mt-0.5 text-muted-foreground" />
+                  <Building className="w-4 h-4 mt-0.5 text-white/60" />
                   <div>
-                    <p className="font-medium text-sm">Organization & Addresses</p>
-                    <p className="text-xs text-muted-foreground">Company, job title, home and work addresses</p>
+                    <p className="font-medium text-sm text-white">Organization & Addresses</p>
+                    <p className="text-xs text-white/50">Company, job title, home and work addresses</p>
                   </div>
                 </div>
               </div>
@@ -143,27 +143,27 @@ export function HelpModal({ open, onOpenChange }: HelpModalProps) {
 
             {/* Key Features */}
             <section>
-              <h3 className="font-semibold text-lg mb-3">Key Features</h3>
+              <h3 className="font-semibold text-lg mb-3 text-white">Key Features</h3>
               <ul className="space-y-2">
                 <li className="flex items-start gap-2">
-                  <Smartphone className="w-4 h-4 mt-0.5 text-primary" />
+                  <Smartphone className="w-4 h-4 mt-0.5 text-white/80" />
                   <div>
-                    <p className="font-medium text-sm">iOS-Style Preview</p>
-                    <p className="text-xs text-muted-foreground">See exactly how your contact will look on an iPhone</p>
+                    <p className="font-medium text-sm text-white">iOS-Style Preview</p>
+                    <p className="text-xs text-white/50">See exactly how your contact will look on an iPhone</p>
                   </div>
                 </li>
                 <li className="flex items-start gap-2">
-                  <Edit className="w-4 h-4 mt-0.5 text-primary" />
+                  <Edit className="w-4 h-4 mt-0.5 text-white/80" />
                   <div>
-                    <p className="font-medium text-sm">Edit Mode</p>
-                    <p className="text-xs text-muted-foreground">Toggle between view and edit modes to update your contact information</p>
+                    <p className="font-medium text-sm text-white">Edit Mode</p>
+                    <p className="text-xs text-white/50">Toggle between view and edit modes to update your contact information</p>
                   </div>
                 </li>
                 <li className="flex items-start gap-2">
-                  <Download className="w-4 h-4 mt-0.5 text-primary" />
+                  <Download className="w-4 h-4 mt-0.5 text-white/80" />
                   <div>
-                    <p className="font-medium text-sm">Universal Compatibility</p>
-                    <p className="text-xs text-muted-foreground">VCF files work with all major contact apps on iOS, Android, and desktop</p>
+                    <p className="font-medium text-sm text-white">Universal Compatibility</p>
+                    <p className="text-xs text-white/50">VCF files work with all major contact apps on iOS, Android, and desktop</p>
                   </div>
                 </li>
               </ul>
@@ -171,8 +171,8 @@ export function HelpModal({ open, onOpenChange }: HelpModalProps) {
 
             {/* Tips */}
             <section>
-              <h3 className="font-semibold text-lg mb-3">Tips</h3>
-              <ul className="space-y-2 text-sm text-muted-foreground">
+              <h3 className="font-semibold text-lg mb-3 text-white">Tips</h3>
+              <ul className="space-y-2 text-sm text-white/60">
                 <li>• Only the first and last name are required - all other fields are optional</li>
                 <li>• The preview updates in real-time as you type</li>
                 <li>• Remember: only one contact card per subaccount is allowed</li>
@@ -185,7 +185,10 @@ export function HelpModal({ open, onOpenChange }: HelpModalProps) {
         </ScrollArea>
 
         <div className="flex justify-end pt-4">
-          <Button onClick={() => onOpenChange(false)}>
+          <Button
+            onClick={() => onOpenChange(false)}
+            className="text-base h-12 bg-white/10 hover:bg-white/15 text-white border border-white/20 backdrop-blur-xl transition-all duration-200 rounded-xl px-6"
+          >
             Got it!
           </Button>
         </div>
